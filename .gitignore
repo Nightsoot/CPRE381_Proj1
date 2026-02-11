@@ -1,2 +1,5 @@
 scripts/outputs/
 work/
+*.mti
+*.mpf
+*.wlf

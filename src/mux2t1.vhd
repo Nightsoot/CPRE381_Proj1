@@ -25,6 +25,6 @@ end mux2t1;
 architecture dataflow of mux2t1 is
 begin
 
-    o_F <= i_D1 when (i_S = '1') else i_D1;
+    o_F <= i_D1 when (i_S = '1') else i_D0;
 
 end dataflow;

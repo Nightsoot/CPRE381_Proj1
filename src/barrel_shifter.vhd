@@ -62,8 +62,8 @@ begin
         Low_Partition: if i <= 15 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(4),
-                i_D0 => s_bit_swap(i),
-                i_D1 => s_bit_swap(i+16),
+                i_D0 => s_8_bit_shift(i),
+                i_D1 => s_8_bit_shift(i+16),
                 o_F  => s_16_bit_shift(i)
             );
         end generate Low_Partition;
@@ -71,7 +71,7 @@ begin
         High_Partition: if i > 15 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(4),
-                i_D0 => s_bit_swap(i),
+                i_D0 => s_8_bit_shift(i),
                 i_D1 => s_ext,
                 o_F  => s_16_bit_shift(i)
             );
@@ -82,8 +82,8 @@ begin
         Low_Partition: if i <= 23 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(3),
-                i_D0 => s_16_bit_shift(i),
-                i_D1 => s_16_bit_shift(i+8),
+                i_D0 => s_4_bit_shift(i),
+                i_D1 => s_4_bit_shift(i+8),
                 o_F  => s_8_bit_shift(i)
             );
         end generate Low_Partition;
@@ -91,7 +91,7 @@ begin
         High_Partition: if i > 23 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(3),
-                i_D0 => s_16_bit_shift(i),
+                i_D0 => s_4_bit_shift(i),
                 i_D1 => s_ext,
                 o_F  => s_8_bit_shift(i)
             );
@@ -102,8 +102,8 @@ begin
         Low_Partition: if i <= 27 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(2),
-                i_D0 => s_8_bit_shift(i),
-                i_D1 => s_8_bit_shift(i+4),
+                i_D0 => s_2_bit_shift(i),
+                i_D1 => s_2_bit_shift(i+4),
                 o_F  => s_4_bit_shift(i)
             );
         end generate Low_Partition;
@@ -111,7 +111,7 @@ begin
         High_Partition: if i > 27 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(2),
-                i_D0 => s_8_bit_shift(i),
+                i_D0 => s_2_bit_shift(i),
                 i_D1 => s_ext,
                 o_F  => s_4_bit_shift(i)
             );
@@ -122,8 +122,8 @@ begin
         Low_Partition: if i <= 29 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(1),
-                i_D0 => s_4_bit_shift(i),
-                i_D1 => s_4_bit_shift(i+2),
+                i_D0 => s_1_bit_shift(i),
+                i_D1 => s_1_bit_shift(i+2),
                 o_F  => s_2_bit_shift(i)
             );
         end generate Low_Partition;
@@ -131,7 +131,7 @@ begin
         High_Partition: if i > 29 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(1),
-                i_D0 => s_4_bit_shift(i),
+                i_D0 => s_1_bit_shift(i),
                 i_D1 => s_ext,
                 o_F  => s_2_bit_shift(i)
             );
@@ -142,8 +142,8 @@ begin
         Low_Partition: if i <= 30 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(0),
-                i_D0 => s_2_bit_shift(i),
-                i_D1 => s_2_bit_shift(i+1),
+                i_D0 => s_bit_swap(i),
+                i_D1 => s_bit_swap(i+1),
                 o_F  => s_1_bit_shift(i)
             );
         end generate Low_Partition;
@@ -151,7 +151,7 @@ begin
         High_Partition: if i > 30 generate
             MUXI: mux2t1 port map(
                 i_S => i_shift(0),
-                i_D0 => s_2_bit_shift(i),
+                i_D0 => s_bit_swap(i),
                 i_D1 => s_ext,
                 o_F  => s_1_bit_shift(i)
             );
@@ -161,8 +161,8 @@ begin
     G_Bit_Flip_2: for i in 0 to 31 generate
         MUXI: mux2t1 port map(
             i_S  => i_left,
-            i_D0 => s_1_bit_shift(i),
-            i_D1 => s_1_bit_shift(31-i),
+            i_D0 => s_16_bit_shift(i),
+            i_D1 => s_16_bit_shift(31-i),
             o_F  => o_result(i)
         );
     end generate G_Bit_Flip_2;

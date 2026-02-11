@@ -36,7 +36,8 @@ def write_assignment(signal, width, value):
 #assuming signal is string of name, width is length in bits, value is integer
 def write_assertion(signal, width, value, message = "Case failed"):
     global f
-    out = "assert (" + signal + " = "
+    out = "wait for cCLK_PER/2;\n"
+    out += "assert (" + signal + " = "
     #different syntax between std_logic and std_logic_vector
     if width == 1:
         out += "'"
@@ -53,12 +54,15 @@ def write_assertion(signal, width, value, message = "Case failed"):
         out += '")'
 
     out += " report " + '"' + message  + '"' + " severity error;\n"
+    out += "wait for cCLK_PER/2;\n\n"
 
     f.write(out)
 
 def increment_case():
     global case_num
-    out = f"s_case_number <= {case_num};\n" + "wait for cCLK_PER;\n\n" 
+    
+    out = f"s_case_number <= {case_num};\n"
+    
     case_num += 1
     f.write(out)
 
@@ -89,36 +93,71 @@ def edge_cases():
     write_assignment("s_shift", 5, 31)
     write_assignment("s_left", 1, 0)
     write_assignment("s_sign_fill", 1, 1)
-    write_assertion("s_result", 32, sra((0x80000000), 31), message=f"Case {case_num} failed")
     increment_case()
+    write_assertion("s_result", 32, sra((0x80000000), 31), message=f"Case {case_num} failed")
 
     write_assignment("s_operand", 32, 0x80000000)
     write_assignment("s_shift", 5, 31)
     write_assignment("s_left", 1, 0)
     write_assignment("s_sign_fill", 1, 0)
-    write_assertion("s_result", 32, srl((0x80000000), 31), message=f"Case {case_num} failed")
     increment_case()
+    write_assertion("s_result", 32, srl((0x80000000), 31), message=f"Case {case_num} failed")
+    
 
     write_assignment("s_operand", 32, 0x80000000)
     write_assignment("s_shift", 5, 1)
     write_assignment("s_left", 1, 1)
     write_assignment("s_sign_fill", 1, 0)
-    write_assertion("s_result", 32, sll((0x80000000), 1), message=f"Case {case_num} failed")
     increment_case()
+    write_assertion("s_result", 32, sll((0x80000000), 1), message=f"Case {case_num} failed")
+
 
     write_assignment("s_operand", 32, 0xFFFFFFFF)
     write_assignment("s_shift", 5, 31)
     write_assignment("s_left", 1, 0)
     write_assignment("s_sign_fill", 1, 1)
-    write_assertion("s_result", 32, sra((0xFFFFFFFF), 31), message=f"Case {case_num} failed")
     increment_case()
+    write_assertion("s_result", 32, sra((0xFFFFFFFF), 31), message=f"Case {case_num} failed")
+
 
     write_assignment("s_operand", 32, 0x00000000)
     write_assignment("s_shift", 5, 31)
     write_assignment("s_left", 1, 0)
     write_assignment("s_sign_fill", 1, 1)
-    write_assertion("s_result", 32, sra((0x00000000), 31), message=f"Case {case_num} failed")
     increment_case()
+    write_assertion("s_result", 32, sra((0x00000000), 31), message=f"Case {case_num} failed")
+
+def random_cases():
+
+    for i in range(1, 101):
+        a = random.randint(0, 2 ** 32 - 1)
+        b = random.randint(0, 31)
+        write_assignment("s_operand", 32, a)
+        write_assignment("s_shift", 5, b)
+        write_assignment("s_left", 1, 0)
+        write_assignment("s_sign_fill", 1, 1)
+        increment_case()
+        write_assertion("s_result", 32, sra(a, b), message=f"Case {case_num} failed")
+
+    for i in range(1, 101):
+        a = random.randint(0, 2 ** 32 - 1)
+        b = random.randint(0, 31)
+        write_assignment("s_operand", 32, a)
+        write_assignment("s_shift", 5, b)
+        write_assignment("s_left", 1, 0)
+        write_assignment("s_sign_fill", 1, 0)
+        increment_case()
+        write_assertion("s_result", 32, srl(a, b), message=f"Case {case_num} failed")
+
+    for i in range(1, 101):
+        a = random.randint(0, 2 ** 32 - 1)
+        b = random.randint(0, 31)
+        write_assignment("s_operand", 32, a)
+        write_assignment("s_shift", 5, b)
+        write_assignment("s_left", 1, 1)
+        write_assignment("s_sign_fill", 1, 0)
+        increment_case()
+        write_assertion("s_result", 32, sll(a, b), message=f"Case {case_num} failed")
 
 def example_case():
     global f
@@ -140,6 +179,7 @@ def main():
     with open(FILE_NAME, 'w', encoding='utf-8') as f1:
         f = f1
         edge_cases()
+        random_cases()
 
     f.close()
 
