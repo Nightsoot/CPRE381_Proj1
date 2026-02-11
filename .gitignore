@@ -1,3 +1,9 @@
 scripts/outputs/
 work/
+<<<<<<< HEAD
 *.wlf
+=======
+*.mti
+*.mpf
+*.wlf
+>>>>>>> barrel_shifter
