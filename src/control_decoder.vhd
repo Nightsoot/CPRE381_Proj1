@@ -26,7 +26,8 @@ entity control_decoder is
         o_reg_write : out std_logic;
         o_reg_read : out std_logic;
         o_PC_source : out std_logic_vector(1 downto 0);
-        o_mem_slice : out std_logic_vector(2 downto 0)
+        o_mem_slice : out std_logic_vector(2 downto 0);
+        o_comparison : out std_logic_vector(2 downto 0)
     );
 
 end control_decoder;
@@ -115,11 +116,12 @@ begin
         "000";
 
     --what type of immediate
-    --0 12 bit unsigned
-    --1 12 bit signed
-    --2 20 bit upper immediate
-    --3 12 bit padded
-    --4 20 bit padded   
+    --0 12 bit unsigned (I)
+    --1 12 bit signed (I)
+    --2 20 bit upper immediate (U)
+    --3 12 bit padded (SB)
+    --4 20 bit padded (UJ)
+    --5 12 bit signed store  (S)
     --12 bit unsigned
     o_imm_type <= "000" when(
         --not addi or slti
@@ -129,7 +131,10 @@ begin
         --12 bit signed
         "001" when(
         (s_opcode = "0010011" and (s_funct3 = "010" or s_funct3 = "000")) or
-        (s_opcode = "0000011") or
+        (s_opcode = "0000011")
+        )
+        else
+        "101" when(
         (s_opcode = "0100011")
         )
         else
@@ -232,5 +237,43 @@ begin
         )
         else
         "000";
+    --determines which comparision to undergo for the fetch logic
+    --0: EQUALS
+    --1: NOT EQUALS
+    --2: LESS THAN (S)
+    --3: GREATER THAN OR EQUAL (S)
+    --4: LESS THAN (U)
+    --5: GREATER THAN OR EQUAL (U)
+    --6: JUMP
+    o_comparison <= "000" when (
+        (s_opcode = "1100011" and s_funct3 = "000")
+        )
+        else
+        "001" when(
+        (s_opcode = "1100011" and s_funct3 = "001")
+        )
+        else
+        "010" when(
+        (s_opcode = "1100011" and s_funct3 = "100")
+        )
+        else
+        "011" when(
+        (s_opcode = "1100011" and s_funct3 = "101")
+        )
+        else
+        "100" when(
+        (s_opcode = "1100011" and s_funct3 = "110")
+        )
+        else
+        "101" when(
+        (s_opcode = "1100011" and s_funct3 = "111")
+        )
+        else
+        "111" when(
+        (s_opcode = "1101111") or
+        (s_opcode = "1100111")
+        )
+        else
+        "000";
 
-end dataflow;
+    end dataflow;
