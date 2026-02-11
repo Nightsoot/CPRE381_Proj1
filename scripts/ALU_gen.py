@@ -83,6 +83,36 @@ def sll(a,b):
     return (a << b) & 0xFFFFFFFF
 
 
+def add(a,b):
+    MASK_32 = 0xFFFFFFFF
+    SIGN_BIT = 0x80000000
+
+    full_sum = a + b
+    result = full_sum & MASK_32
+
+    carry_out = 1 if full_sum > MASK_32 else 0
+    zero_flag = 1 if result == 0 else 0
+
+
+    a_sign = (a & SIGN_BIT) != 0
+    b_sign = (b & SIGN_BIT) != 0
+    r_sign = (result & SIGN_BIT) != 0
+
+    overflow_flag = 1 if (a_sign == b_sign) and (a_sign != r_sign) else 0
+    
+    return result, zero_flag, (result & SIGN_BIT), carry_out, overflow_flag
+
+def and32(a,b):
+    return a & b & 0xFFFFFFFF
+
+def xor32(a,b):
+    return (a ^ b) & 0xFFFFFFFF
+
+def or32(a,b):
+    return (a | b) & 0xFFFFFFFF
+
+
+
 
 def edge_cases():
 
