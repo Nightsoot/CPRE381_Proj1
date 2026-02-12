@@ -34,19 +34,19 @@ begin
         i_slice_type = "000"
         )
         else
-        ((23 downto 0) => i_data(7)) & i_data(7 downto 0) when(
+        (23 downto 0 => i_data(7)) & i_data(7 downto 0) when(
         i_slice_type = "001"
         )
         else
-        ((15 downto 0) => i_data(15)) & i_data(15 downto 0) when(
+        (15 downto 0 => i_data(15)) & i_data(15 downto 0) when(
         i_slice_type = "010"
         )
         else
-        ((23 downto 0) => '0') & i_data(7 downto 0) when(
+        (23 downto 0 => '0') & i_data(7 downto 0) when(
         i_slice_type = "011"
         )
         else
-        ((15 downto 0) => '0') & i_data(15 downto 0) when(
+        (15 downto 0 => '0') & i_data(15 downto 0) when(
         i_slice_type = "100"
         )
         else
