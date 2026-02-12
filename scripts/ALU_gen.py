@@ -140,7 +140,7 @@ def edge_cases():
     b = 0x1
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b000)
+    write_assignment("s_ALU_operation", 4, 0b000)
     write_wait()
     write_assertion("s_result", 32, add(a,b)[0], message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, add(a,b)[1], message=f"Case {case_num} zero flag failed")
@@ -156,7 +156,7 @@ def edge_cases():
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
     b = twos_complement(b)
-    write_assignment("s_ALU_operation", 32, 0b001)
+    write_assignment("s_ALU_operation", 4, 0b001)
     write_wait()
     write_assertion("s_result", 32, add(a,b)[0], message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, add(a,b)[1], message=f"Case {case_num} zero flag failed")
@@ -172,7 +172,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b010)
+    write_assignment("s_ALU_operation", 4, 0b010)
     write_wait()
     write_assertion("s_result", 32, and32(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -188,7 +188,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b011)
+    write_assignment("s_ALU_operation", 4, 0b011)
     write_wait()
     write_assertion("s_result", 32, or32(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -204,7 +204,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b100)
+    write_assignment("s_ALU_operation", 4, 0b100)
     write_wait()
     write_assertion("s_result", 32, xor32(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -221,7 +221,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b101)
+    write_assignment("s_ALU_operation", 4, 0b101)
     write_wait()
     write_assertion("s_result", 32, sll(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -238,7 +238,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b110)
+    write_assignment("s_ALU_operation", 4, 0b110)
     write_wait()
     write_assertion("s_result", 32, srl(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -255,7 +255,7 @@ def edge_cases():
 
     write_assignment("s_a", 32, a)
     write_assignment("s_b", 32, b)
-    write_assignment("s_ALU_operation", 32, 0b111)
+    write_assignment("s_ALU_operation", 4, 0b111)
     write_wait()
     write_assertion("s_result", 32, sra(a,b), message=f"Case {case_num} result failed")
     write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -267,6 +267,14 @@ def edge_cases():
     f.write('\n')
 
 
+def slt(a,b):
+    return (-1*(a & 0x80000000) + (a & 0x7FFFFFFF)) < (-1*(b & 0x80000000) + (b & 0x7FFFFFFF))
+
+
+def sltu(a,b):
+    return (a & 0xFFFFFFFF) < (b & 0xFFFFFFFF)
+
+
 
 def random_cases():
     global f
@@ -276,7 +284,7 @@ def random_cases():
         b = random.randint(0, 2**32  - 1)
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b000)
+        write_assignment("s_ALU_operation", 4, 0b000)
         write_wait()
         write_assertion("s_result", 32, add(a,b)[0], message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, add(a,b)[1], message=f"Case {case_num} zero flag failed")
@@ -296,7 +304,7 @@ def random_cases():
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
         b = twos_complement(b)
-        write_assignment("s_ALU_operation", 32, 0b001)
+        write_assignment("s_ALU_operation", 4, 0b001)
         write_wait()
         write_assertion("s_result", 32, add(a,b)[0], message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, add(a,b)[1], message=f"Case {case_num} zero flag failed")
@@ -313,7 +321,7 @@ def random_cases():
 
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b010)
+        write_assignment("s_ALU_operation", 4, 0b010)
         write_wait()
         write_assertion("s_result", 32, and32(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -330,7 +338,7 @@ def random_cases():
 
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b011)
+        write_assignment("s_ALU_operation", 4, 0b011)
         write_wait()
         write_assertion("s_result", 32, or32(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -347,7 +355,7 @@ def random_cases():
 
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b100)
+        write_assignment("s_ALU_operation", 4, 0b100)
         write_wait()
         write_assertion("s_result", 32, xor32(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -364,7 +372,7 @@ def random_cases():
         b = random.randint(0, 31)
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b101)
+        write_assignment("s_ALU_operation", 4, 0b101)
         write_wait()
         write_assertion("s_result", 32, sll(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -381,7 +389,7 @@ def random_cases():
         b = random.randint(0, 31)
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b110)
+        write_assignment("s_ALU_operation", 4, 0b110)
         write_wait()
         write_assertion("s_result", 32, srl(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
@@ -397,9 +405,41 @@ def random_cases():
         b = random.randint(0, 31)
         write_assignment("s_a", 32, a)
         write_assignment("s_b", 32, b)
-        write_assignment("s_ALU_operation", 32, 0b111)
+        write_assignment("s_ALU_operation", 4, 0b111)
         write_wait()
         write_assertion("s_result", 32, sra(a,b), message=f"Case {case_num} result failed")
+        write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
+        write_assertion("s_negative", 1, None, message=f"Case {case_num} negative flag failed")
+        write_assertion("s_carry_out", 1, None, message=f"Case {case_num} carry flag failed")
+        write_assertion("s_overflow", 1, None, message=f"Case {case_num} overflow flag failed")
+        write_wait()
+        increment_case()
+        f.write('\n')
+
+    for i in range(1, 101):
+        a = random.randint(0, 2**32  - 1)
+        b = random.randint(0, 2**32 - 1)
+        write_assignment("s_a", 32, a)
+        write_assignment("s_b", 32, b)
+        write_assignment("s_ALU_operation", 4, 0b1000)
+        write_wait()
+        write_assertion("s_result", 32, slt(a,b), message=f"Case {case_num} result failed")
+        write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
+        write_assertion("s_negative", 1, None, message=f"Case {case_num} negative flag failed")
+        write_assertion("s_carry_out", 1, None, message=f"Case {case_num} carry flag failed")
+        write_assertion("s_overflow", 1, None, message=f"Case {case_num} overflow flag failed")
+        write_wait()
+        increment_case()
+        f.write('\n')
+
+    for i in range(1, 101):
+        a = random.randint(0, 2**32  - 1)
+        b = random.randint(0, 2**32 - 1)
+        write_assignment("s_a", 32, a)
+        write_assignment("s_b", 32, b)
+        write_assignment("s_ALU_operation", 4, 0b1001)
+        write_wait()
+        write_assertion("s_result", 32, sltu(a,b), message=f"Case {case_num} result failed")
         write_assertion("s_zero", 1, None, message=f"Case {case_num} zero flag failed")
         write_assertion("s_negative", 1, None, message=f"Case {case_num} negative flag failed")
         write_assertion("s_carry_out", 1, None, message=f"Case {case_num} carry flag failed")
