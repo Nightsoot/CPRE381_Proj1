@@ -134,6 +134,7 @@ def or32(a,b):
 
 
 def edge_cases():
+    global f
 
     a = 0xFFFFFFFF
     b = 0x1
@@ -268,6 +269,7 @@ def edge_cases():
 
 
 def random_cases():
+    global f
 
     for i in range(1,101):
         a = random.randint(0, 2**32  - 1)
@@ -405,18 +407,6 @@ def random_cases():
         write_wait()
         increment_case()
         f.write('\n')
-
-def example_case():
-    global f
-    for i in range(1,101):
-        a = random.randint(-2**31, 2**31-1)
-        b = random.randint(-2**31, 2**31-1)
-        f.write(f"--Test Case {i}:\n")
-        write_assignment("i_A", 32, a)
-        write_assignment("i_B", 32, b)
-        write_assertion("i_S", 32, (a+b) & 0xFFFFFFFF, message=f"Case {case_num} failed")
-        f.write('\n')
-    
 
 
 
