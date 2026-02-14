@@ -75,6 +75,7 @@ begin
         (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0100000") or
         (s_opcode = "0110011" and s_funct3 = "010" and s_funct7 = "0000000") or
         (s_opcode = "0110011" and s_funct3 = "011" and s_funct7 = "0000000") or
+        (s_opcode = "0010011" and s_funct3 = "010")or
         (s_opcode = "1100011")
         )
         --AND
@@ -188,7 +189,7 @@ begin
         (s_opcode = "0010111")
         )
         else
-        '0';
+        '1';
 
     --forces regs to 0 for lui
     o_reg_read <= '0' when (s_opcode = "0110111") else
@@ -269,7 +270,7 @@ begin
         (s_opcode = "1100011" and s_funct3 = "111")
         )
         else
-        "111" when(
+        "110" when(
         (s_opcode = "1101111") or
         (s_opcode = "1100111")
         )
