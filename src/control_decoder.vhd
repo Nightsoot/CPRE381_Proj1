@@ -133,13 +133,13 @@ begin
     --5 12 bit signed store  (S)
     --12 bit unsigned
     o_imm_type <= "000" when(
-        --not addi or slti
-        (s_opcode = "0010011" and not (s_funct3 = "010" or s_funct3 = "000"))
+        --slli, srai, and srli
+        (s_opcode = "0010011" and (s_funct3 = "101" or s_funct3 = "001"))
         )
         else
         --12 bit signed
         "001" when(
-        (s_opcode = "0010011" and (s_funct3 = "010" or s_funct3 = "000")) or
+        (s_opcode = "0010011" and not (s_funct3 = "101" or s_funct3 = "001")) or
         (s_opcode = "0000011")
         )
         else
