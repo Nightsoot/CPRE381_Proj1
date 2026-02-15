@@ -19,7 +19,7 @@ entity control_decoder is
     port (
         i_instruction : in std_logic_vector(31 downto 0);
         o_ALU_src : out std_logic;
-        o_ALU_control : out std_logic_vector(2 downto 0);
+        o_ALU_control : out std_logic_vector(3 downto 0);
         o_imm_type : out std_logic_vector(2 downto 0);
         o_result_src : out std_logic_vector(1 downto 0);
         o_mem_write : out std_logic;
@@ -60,7 +60,9 @@ begin
     --5: LSL
     --6: RSL
     --7: RSA 
-    o_ALU_control <= "000" when(
+    --8: SLT
+    --9: SLTU
+    o_ALU_control <= "0000" when(
         --ADD
         --add is weird case
         (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0000000") or
@@ -70,51 +72,57 @@ begin
         )
         else
         --SUB
-        "001" when(
+        "0001" when(
         --sub/slt/sltu is wierd case
         (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0100000") or
-        (s_opcode = "0110011" and s_funct3 = "010" and s_funct7 = "0000000") or
-        (s_opcode = "0110011" and s_funct3 = "011" and s_funct7 = "0000000") or
         (s_opcode = "0010011" and s_funct3 = "010")or
         (s_opcode = "1100011")
         )
         --AND
         else
-        "010" when(
+        "0010" when(
         (s_opcode = "0110011" and s_funct3 = "111") or
         (s_opcode = "0010011" and s_funct3 = "111")
         )
         --OR
         else
-        "011" when(
+        "0011" when(
         (s_opcode = "0110011" and s_funct3 = "110") or
         (s_opcode = "0010011" and s_funct3 = "110")
         )
         --XOR
         else
-        "100" when(
+        "0100" when(
         (s_opcode = "0110011" and s_funct3 = "100") or
         (s_opcode = "0010011" and s_funct3 = "100")
         )
         --LSL
         else
-        "101" when(
+        "0101" when(
         (s_opcode = "0110011" and s_funct3 = "001") or
         (s_opcode = "0010011" and s_funct3 = "001")
         )
         --RSL
         else
-        "110" when(
+        "0110" when(
         (s_opcode = "0110011" and s_funct3 = "101" and s_funct7 = "0000000") or
         (s_opcode = "0010011" and s_funct3 = "101" and s_funct7 = "0000000")
         )
         else
-        "111" when(
+        "0111" when(
         (s_opcode = "0110011" and s_funct3 = "101" and s_funct7 = "0100000") or
         (s_opcode = "0010011" and s_funct3 = "101" and s_funct7 = "0100000")
         )
         else
-        "000";
+        "1000" when(
+        (s_opcode = "0110011" and s_funct3 = "010" and s_funct7 = "0000000")
+        )
+        else
+        "1001" when(
+        (s_opcode = "0110011" and s_funct3 = "011" and s_funct7 = "0000000")
+        )
+        else
+        "0000";
 
     --what type of immediate
     --0 12 bit unsigned (I)
@@ -277,4 +285,4 @@ begin
         else
         "000";
 
-    end dataflow;
+end dataflow;
