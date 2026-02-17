@@ -28,9 +28,7 @@ begin
     --ADD, SUB, SLT, SLTU
     o_mux_ctrl <= "000" when(
         (i_ALU_op = "0000") or
-        (i_ALU_op = "0001") or
-        (i_ALU_op = "1000") or
-        (i_ALU_op = "1001")
+        (i_ALU_op = "0001")
         )
         else
         --AND
@@ -48,11 +46,17 @@ begin
         (i_ALU_op = "0110") or
         (i_ALU_op = "0111")
         )
+        else
+        --SLT
+        "101" when(i_ALU_op = "1000")
+        else
+        --SLTU
+        "110" when(i_ALU_op = "1001")
         else "000";
 
-    o_barrel_left <= '0' when(i_ALU_op = "0101")
+    o_barrel_left <= '1' when(i_ALU_op = "0101")
     else
-    '1' when(
+    '0' when(
         (i_ALU_op = "0110") or
         (i_ALU_op = "0111")
     )

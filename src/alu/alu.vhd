@@ -26,6 +26,18 @@ entity alu is
     );
 end alu;
 
+--ALU opcodes:
+--x0: ADD
+--x1: SUB
+--x2: AND
+--x3: OR
+--x4: XOR
+--x5: LSL
+--x6: RSL
+--x7: RSA 
+--x8: SLT
+--x9: SLTU
+
 architecture structural of alu is
 
     component mux8t1_32 is
@@ -114,7 +126,7 @@ architecture structural of alu is
     end component;
 
     signal s_adder_in, s_addsub, s_and, s_or, s_xor, s_shift_res : std_logic_vector(31 downto 0);
-    signal s_Cin, s_C_MSB_out, s_C_MSB_in, s_left_shift, s_shift_sign_fill, s_N : std_logic;
+    signal s_Cin, s_C_MSB_out, s_C_MSB_in, s_left_shift, s_shift_sign_fill, s_N, s_V, s_slt, s_sltu : std_logic;
     signal s_mux_ctrl : std_logic_vector(2 downto 0);
 begin
 
@@ -140,6 +152,7 @@ begin
 
     o_C <= s_C_MSB_out;
     o_N <= s_addsub(31);
+    s_N <= s_addsub(31);
 
     g_Inverter: xor32
         port MAP(
@@ -166,7 +179,7 @@ begin
         port MAP(
             i_A => i_opperand1,
             i_B => i_opperand2,
-            o_F => s_or
+            o_F => s_xor
         );
 
     g_Shift: barrel_shifter
@@ -188,8 +201,18 @@ begin
         port MAP(
             i_A => s_C_MSB_in,
             i_B => s_C_MSB_out,
-            o_F => o_V
+            o_F => s_V
         );
+    o_V <= s_V;
+
+    g_Xor_SLT: xorg2
+        port MAP(
+            i_A => s_N,
+            i_B => s_V,
+            o_F => s_slt
+        );
+
+    s_sltu <= not s_C_MSB_out;
 
     g_Mux_Out: mux8t1_32
         port MAP(
@@ -198,8 +221,8 @@ begin
             i_D2 => s_or,
             i_D3 => s_xor,
             i_D4 => s_shift_res,
-            i_D5 => x"00000000",
-            i_D6 => x"00000000",
+            i_D5 => (0 => s_slt, others => '0'),
+            i_D6 => (0 => s_sltu, others => '0'),
             i_D7 => x"00000000",
             i_S  => s_mux_ctrl,
             o_F  => o_F
