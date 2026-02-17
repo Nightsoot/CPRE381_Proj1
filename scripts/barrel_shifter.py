@@ -67,8 +67,6 @@ def increment_case():
     f.write(out)
 
 
-
-
 def srl(a, b):
     return (a>>b) & 0xFFFFFFFF if a >= 0 else ((a+0x800000000)>>b) & 0xFFFFFFFF
 
@@ -79,7 +77,6 @@ def to_signed(a):
 def sra(a, b):
     arr = np.int32(to_signed(a))
     return np.right_shift(arr, b)
-
 
 
 def sll(a,b):
