@@ -41,6 +41,7 @@ architecture mixed of fetch_logic is
     --checks if the branch condition is met
     signal s_condition_met : std_logic;
     signal s_PC_chosen : std_logic_vector(31 downto 0);
+    signal s_adder_operand, s_adder_res : std_logic_vector(31 downto 0);
 
     component reg_n is
 
@@ -54,6 +55,18 @@ architecture mixed of fetch_logic is
 
     end component;
 
+
+    component adder is
+    port(
+        i_opperand1 : in std_logic_vector(31 downto 0);
+        i_opperand2 : in std_logic_vector(31 downto 0);
+        i_carry : in std_logic;
+        o_result : out std_logic_vector(31 downto 0);
+        o_carry_o : out std_logic;
+        o_carry_i : out std_logic
+    );
+    end component;
+
 begin
 
     --instantiate the PC register
@@ -65,6 +78,16 @@ begin
         i_WE => '1',
         i_D => s_PC_chosen,
         o_Q => o_new_PC
+    );
+
+    s_adder_operand <= X"00000004" when (i_PC_source(0) = '0' or (s_condition_met = '0' and i_PC_source(0) = '1')) else i_imm;
+
+    g_Adder: adder
+    port map(
+        i_opperand1 => i_PC,
+        i_opperand2 => s_adder_operand,
+        i_carry => '0',
+        o_result => s_adder_res
     );
     --Checking the branch condition
     --0: EQUALS
@@ -92,17 +115,21 @@ begin
         )
         else
         '0';
+
+
+    
+
     --Muxing the different PC sources
     --0: PC + 4
     --1: PC relative
     --2: Register relative (ALU)
     --Some VHDL magic to add +4 to a std_logic_vector without instantiating an adder
-    o_new_PC <= std_logic_vector(to_unsigned((to_integer(unsigned(i_PC)) + 4), 32)) when(
-        i_PC_source = "00" or (i_PC_source = "01" and s_condition_met = '0')
+    s_PC_chosen <= s_adder_res when(
+        i_PC_source = "00"
         )
         else
         --Some VHDL magic to add +imm to a std_logic_vector without instantiating an adder
-        std_logic_vector(to_unsigned((to_integer(unsigned(i_PC)) + to_integer(unsigned(i_imm))), 32)) when(
+        s_adder_res when(
         --otherwise if the condition is met than this part can execute
         i_PC_source = "01"
         )
