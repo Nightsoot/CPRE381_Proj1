@@ -105,7 +105,7 @@ def example_case():
         pc = random.randint(0, 2**32-5)
         imm = random.randint(0, 2**32-1)
         alu_res = random.randint(0, 2**32-1)
-        pc_src = random.randint(0, 3)
+        pc_src = random.randint(0, 2)
         comp = random.randint(0, 5)
         zero = random.randint(0, 1)
         negative = random.randint(0, 1)

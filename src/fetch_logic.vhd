@@ -80,15 +80,15 @@ begin
         o_Q => o_new_PC
     );
 
-    s_adder_operand <= X"00000004" when (i_PC_source(0) = '0') else i_imm;
+    s_adder_operand <= X"00000004" when (i_PC_source(0) = '0' or (s_condition_met = '0' and i_PC_source(0) = '1')) else i_imm;
 
-    ADDER: adder
+    g_Adder: adder
     port map(
         i_opperand1 => i_PC,
         i_opperand2 => s_adder_operand,
         i_carry => '0',
-        o_result => s_adder_operand
-    )
+        o_result => s_adder_res
+    );
     --Checking the branch condition
     --0: EQUALS
     --1: NOT EQUALS
@@ -125,7 +125,7 @@ begin
     --2: Register relative (ALU)
     --Some VHDL magic to add +4 to a std_logic_vector without instantiating an adder
     s_PC_chosen <= s_adder_res when(
-        i_PC_source = "00" or (i_PC_source = "01" and s_condition_met = '0')
+        i_PC_source = "00"
         )
         else
         --Some VHDL magic to add +imm to a std_logic_vector without instantiating an adder
