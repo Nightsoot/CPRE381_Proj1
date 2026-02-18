@@ -26,6 +26,7 @@ architecture behavior of tb_mem_slice is
 
         port (
             i_data : in std_logic_vector(31 downto 0);
+            i_add_2LSB : in std_logic_vector(1 downto 0);
             --0: FULL WORD
             --1: BYTE SIGNED
             --2: HALFWORD SIGNED
@@ -43,6 +44,7 @@ architecture behavior of tb_mem_slice is
     -- Temporary signals to connect to the decoder component.
     signal s_data_i, s_data_o : std_logic_vector(31 downto 0);
     signal s_slice_type : std_logic_vector(2 downto 0);
+    signal s_add_2LSB : std_logic_vector(1 downto 0);
 
 begin
 
@@ -50,6 +52,7 @@ begin
     port map(
         i_data => s_data_i,
         i_slice_type => s_slice_type,
+        i_add_2LSB => s_add_2LSB,
         o_data => s_data_o
     );
 
@@ -71,24 +74,45 @@ begin
         wait for cCLK_PER;
         s_RST <= '0';
 
-        s_data_i <= X"FFFFFFFF";
+        s_data_i <= X"FFEEDDCC";
         s_slice_type <= "000";
+        s_add_2LSB <= "00";
         wait for cCLK_PER;
 
-        s_data_i <= X"FFFFFFFF";
+        s_data_i <= X"FFEEDDCC";
         s_slice_type <= "001";
+        s_add_2LSB <= "00";
+        wait for cCLK_PER;
+        s_add_2LSB <= "01";
+        wait for cCLK_PER;
+        s_add_2LSB <= "10";
+        wait for cCLK_PER;
+        s_add_2LSB <= "11";
         wait for cCLK_PER;
 
-        s_data_i <= X"FFFFFFFF";
+        s_data_i <=  X"FFEEDDCC";
         s_slice_type <= "010";
+        s_add_2LSB <= "00";
+        wait for cCLK_PER;
+        s_add_2LSB <= "10";
         wait for cCLK_PER;
 
-        s_data_i <= X"FFFFFFFF";
+        s_data_i <=  X"FFEEDDCC";
         s_slice_type <= "011";
+        s_add_2LSB <= "00";
+        wait for cCLK_PER;
+        s_add_2LSB <= "01";
+        wait for cCLK_PER;
+        s_add_2LSB <= "10";
+        wait for cCLK_PER;
+        s_add_2LSB <= "11";
         wait for cCLK_PER;
 
-        s_data_i <= X"FFFFFFFF";
+        s_data_i <=  X"FFEEDDCC";
         s_slice_type <= "100";
+        s_add_2LSB <= "00";
+        wait for cCLK_PER;
+        s_add_2LSB <= "10";
         wait for cCLK_PER;
 
         
