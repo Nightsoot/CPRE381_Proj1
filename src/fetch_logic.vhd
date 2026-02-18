@@ -97,12 +97,12 @@ begin
     --1: PC relative
     --2: Register relative (ALU)
     --Some VHDL magic to add +4 to a std_logic_vector without instantiating an adder
-    o_new_PC <= std_logic_vector(to_unsigned((to_integer(unsigned(i_PC)) + 4), 32)) when(
+    s_PC_chosen <= std_logic_vector(to_unsigned(i_PC, 32) + 4) when(
         i_PC_source = "00" or (i_PC_source = "01" and s_condition_met = '0')
         )
         else
         --Some VHDL magic to add +imm to a std_logic_vector without instantiating an adder
-        std_logic_vector(to_unsigned((to_integer(unsigned(i_PC)) + to_integer(unsigned(i_imm))), 32)) when(
+        std_logic_vector(to_unsigned(i_PC, 32) + to_unsigned(i_imm, 32)) when(
         --otherwise if the condition is met than this part can execute
         i_PC_source = "01"
         )

@@ -114,7 +114,6 @@ def example_case():
         target = branch(pc_src, alu_res, comp, zero, negative, carry, overflow, pc, imm)
         branch_type = ["beq", "bne", "blt", "bge", "bltu", "bgeu"]
         f.write(f"--Test Case {i}:\n")
-        wait_clock_cycle()
         write_assignment("s_PC", 32, pc)
         write_assignment("s_imm", 32, imm)
         write_assignment("s_ALU_result", 32, alu_res)
@@ -124,6 +123,7 @@ def example_case():
         write_assignment("s_negative", 1, negative)
         write_assignment("s_carry", 1, carry)
         write_assignment("s_overflow", 1, overflow)
+        wait_clock_cycle()
         write_assertion("s_new_PC", 32, target & 0xFFFFFFFF, message=f"Case {i} {branch_type[comp]} failed")
         f.write('\n')
     

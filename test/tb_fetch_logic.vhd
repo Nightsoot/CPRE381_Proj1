@@ -85,1305 +85,1307 @@ begin
         wait for cCLK_PER;
         s_RST <= '0';
 
+
 --Test Case 1:
-wait for cCLK_PER;
-s_PC <= X"2013847E";
-s_imm <= X"762D038C";
-s_ALU_result <= X"BA3D1181";
-s_PC_source <= X"1";
-s_comparison <= X"4";
+s_PC <= X"608EB6BD";
+s_imm <= X"509D98CD";
+s_ALU_result <= X"FE927F9B";
+s_PC_source <= X"0";
+s_comparison <= X"0";
 s_zero <= '0';
-s_negative <= '0';
-s_carry <= '0';
+s_negative <= '1';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"9640880A") report "Case 1 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"608EB6C1") report "Case 1 beq failed" severity error;
 
 --Test Case 2:
-wait for cCLK_PER;
-s_PC <= X"DD7B76D8";
-s_imm <= X"A7EEB5B1";
-s_ALU_result <= X"6C95AC4B";
-s_PC_source <= X"3";
+s_PC <= X"B21FC7BF";
+s_imm <= X"CA70DC0F";
+s_ALU_result <= X"A72ABA57";
+s_PC_source <= X"0";
 s_comparison <= X"0";
-s_zero <= '1';
-s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"856A2C89") report "Case 2 beq failed" severity error;
+s_zero <= '0';
+s_negative <= '0';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"B21FC7C3") report "Case 2 beq failed" severity error;
 
 --Test Case 3:
-wait for cCLK_PER;
-s_PC <= X"54DBCB59";
-s_imm <= X"EFC048E5";
-s_ALU_result <= X"F390F68D";
-s_PC_source <= X"0";
-s_comparison <= X"0";
+s_PC <= X"C6742111";
+s_imm <= X"AC45779A";
+s_ALU_result <= X"3F1C5D0E";
+s_PC_source <= X"2";
+s_comparison <= X"1";
 s_zero <= '0';
 s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"54DBCB5D") report "Case 3 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"3F1C5D0E") report "Case 3 bne failed" severity error;
 
 --Test Case 4:
-wait for cCLK_PER;
-s_PC <= X"DF6EAC57";
-s_imm <= X"4901EC91";
-s_ALU_result <= X"B07CEACD";
-s_PC_source <= X"2";
+s_PC <= X"848D0C75";
+s_imm <= X"A74B1067";
+s_ALU_result <= X"5F49FBB8";
+s_PC_source <= X"1";
 s_comparison <= X"2";
 s_zero <= '1';
 s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"B07CEACD") report "Case 4 blt failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"2BD81CDC") report "Case 4 blt failed" severity error;
 
 --Test Case 5:
-wait for cCLK_PER;
-s_PC <= X"627A2B60";
-s_imm <= X"57813996";
-s_ALU_result <= X"051948F4";
-s_PC_source <= X"0";
-s_comparison <= X"5";
-s_zero <= '1';
+s_PC <= X"5445472E";
+s_imm <= X"423C640E";
+s_ALU_result <= X"25771901";
+s_PC_source <= X"2";
+s_comparison <= X"3";
+s_zero <= '0';
 s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"627A2B64") report "Case 5 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"25771901") report "Case 5 bge failed" severity error;
 
 --Test Case 6:
-wait for cCLK_PER;
-s_PC <= X"E6C3CB41";
-s_imm <= X"85554618";
-s_ALU_result <= X"0F0743DC";
-s_PC_source <= X"0";
-s_comparison <= X"3";
+s_PC <= X"DC7D30E4";
+s_imm <= X"C62E2871";
+s_ALU_result <= X"D51FEDC3";
+s_PC_source <= X"3";
+s_comparison <= X"1";
 s_zero <= '1';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"E6C3CB45") report "Case 6 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"DC7D30E8") report "Case 6 bne failed" severity error;
 
 --Test Case 7:
+s_PC <= X"71287B3B";
+s_imm <= X"89CE170C";
+s_ALU_result <= X"DEDB38B6";
+s_PC_source <= X"1";
+s_comparison <= X"5";
+s_zero <= '1';
+s_negative <= '0';
+s_carry <= '0';
+s_overflow <= '0';
 wait for cCLK_PER;
-s_PC <= X"9BC9587B";
-s_imm <= X"40E4147B";
-s_ALU_result <= X"14D8E425";
-s_PC_source <= X"2";
-s_comparison <= X"0";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"14D8E425") report "Case 7 beq failed" severity error;
+assert (s_new_PC = X"71287B3F") report "Case 7 bgeu failed" severity error;
 
 --Test Case 8:
-wait for cCLK_PER;
-s_PC <= X"C9CBE413";
-s_imm <= X"1531B46C";
-s_ALU_result <= X"98BD437A";
-s_PC_source <= X"1";
+s_PC <= X"B09CE900";
+s_imm <= X"9B48283E";
+s_ALU_result <= X"6EEDFF94";
+s_PC_source <= X"2";
 s_comparison <= X"3";
 s_zero <= '0';
 s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"C9CBE417") report "Case 8 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"6EEDFF94") report "Case 8 bge failed" severity error;
 
 --Test Case 9:
-wait for cCLK_PER;
-s_PC <= X"113E1F2A";
-s_imm <= X"E1ADBE61";
-s_ALU_result <= X"08D08078";
+s_PC <= X"2D545D49";
+s_imm <= X"7508B1B9";
+s_ALU_result <= X"73ED26D1";
 s_PC_source <= X"2";
-s_comparison <= X"0";
+s_comparison <= X"4";
 s_zero <= '1';
-s_negative <= '1';
-s_carry <= '1';
+s_negative <= '0';
+s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"08D08078") report "Case 9 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"73ED26D1") report "Case 9 bltu failed" severity error;
 
 --Test Case 10:
-wait for cCLK_PER;
-s_PC <= X"02B38DC9";
-s_imm <= X"3EBDEBD6";
-s_ALU_result <= X"76A63A4E";
-s_PC_source <= X"0";
-s_comparison <= X"4";
+s_PC <= X"E3C28DC6";
+s_imm <= X"BC5922CD";
+s_ALU_result <= X"69E86E2E";
+s_PC_source <= X"3";
+s_comparison <= X"2";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
+s_negative <= '1';
+s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"02B38DCD") report "Case 10 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"E3C28DCA") report "Case 10 blt failed" severity error;
 
 --Test Case 11:
-wait for cCLK_PER;
-s_PC <= X"CF22D9FF";
-s_imm <= X"BF35235D";
-s_ALU_result <= X"A8E366C6";
-s_PC_source <= X"3";
+s_PC <= X"7CA5983F";
+s_imm <= X"937AD734";
+s_ALU_result <= X"7B2506D9";
+s_PC_source <= X"1";
 s_comparison <= X"1";
 s_zero <= '0';
-s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"8E57FD5C") report "Case 11 bne failed" severity error;
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"10206F73") report "Case 11 bne failed" severity error;
 
 --Test Case 12:
-wait for cCLK_PER;
-s_PC <= X"ABBF4E94";
-s_imm <= X"4A4CF2A4";
-s_ALU_result <= X"9D246B1C";
-s_PC_source <= X"1";
-s_comparison <= X"2";
+s_PC <= X"68B1E0AC";
+s_imm <= X"8B3F081E";
+s_ALU_result <= X"196305D4";
+s_PC_source <= X"2";
+s_comparison <= X"4";
 s_zero <= '1';
 s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"ABBF4E98") report "Case 12 blt failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"196305D4") report "Case 12 bltu failed" severity error;
 
 --Test Case 13:
-wait for cCLK_PER;
-s_PC <= X"7B6092AA";
-s_imm <= X"585151D5";
-s_ALU_result <= X"D3258B3D";
-s_PC_source <= X"3";
+s_PC <= X"E07FF2A6";
+s_imm <= X"A42A40F9";
+s_ALU_result <= X"7813DAA8";
+s_PC_source <= X"1";
 s_comparison <= X"2";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"D3B1E47F") report "Case 13 blt failed" severity error;
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"84AA339F") report "Case 13 blt failed" severity error;
 
 --Test Case 14:
-wait for cCLK_PER;
-s_PC <= X"C9480827";
-s_imm <= X"7E2B892D";
-s_ALU_result <= X"A7215E9E";
+s_PC <= X"36478685";
+s_imm <= X"B8980C27";
+s_ALU_result <= X"4C087904";
 s_PC_source <= X"3";
-s_comparison <= X"2";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"47739154") report "Case 14 blt failed" severity error;
+s_comparison <= X"1";
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"36478689") report "Case 14 bne failed" severity error;
 
 --Test Case 15:
-wait for cCLK_PER;
-s_PC <= X"D08B6B01";
-s_imm <= X"2348214E";
-s_ALU_result <= X"96275DB6";
-s_PC_source <= X"2";
+s_PC <= X"79A3C8FE";
+s_imm <= X"594D1E62";
+s_ALU_result <= X"8BDC636E";
+s_PC_source <= X"3";
 s_comparison <= X"2";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"96275DB6") report "Case 15 blt failed" severity error;
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"D2F0E760") report "Case 15 blt failed" severity error;
 
 --Test Case 16:
-wait for cCLK_PER;
-s_PC <= X"AAC6BEAA";
-s_imm <= X"E61CD9D7";
-s_ALU_result <= X"0EE2EF9D";
-s_PC_source <= X"3";
-s_comparison <= X"0";
+s_PC <= X"61DC141B";
+s_imm <= X"18D80BB0";
+s_ALU_result <= X"4961C31F";
+s_PC_source <= X"0";
+s_comparison <= X"5";
 s_zero <= '0';
 s_negative <= '0';
-s_carry <= '0';
+s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"AAC6BEAE") report "Case 16 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"61DC141F") report "Case 16 bgeu failed" severity error;
 
 --Test Case 17:
-wait for cCLK_PER;
-s_PC <= X"3B41DA4C";
-s_imm <= X"2BE26C0A";
-s_ALU_result <= X"8A6E124C";
-s_PC_source <= X"0";
-s_comparison <= X"4";
-s_zero <= '0';
+s_PC <= X"0D201B19";
+s_imm <= X"8A10AAAB";
+s_ALU_result <= X"AC456938";
+s_PC_source <= X"3";
+s_comparison <= X"5";
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"3B41DA50") report "Case 17 bltu failed" severity error;
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"9730C5C4") report "Case 17 bgeu failed" severity error;
 
 --Test Case 18:
-wait for cCLK_PER;
-s_PC <= X"5E5617DE";
-s_imm <= X"B61DD097";
-s_ALU_result <= X"B3190F59";
+s_PC <= X"5A65F7AD";
+s_imm <= X"6BA2F9BD";
+s_ALU_result <= X"0EA88001";
 s_PC_source <= X"1";
 s_comparison <= X"1";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"1473E875") report "Case 18 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"5A65F7B1") report "Case 18 bne failed" severity error;
 
 --Test Case 19:
-wait for cCLK_PER;
-s_PC <= X"474C5720";
-s_imm <= X"727E3A25";
-s_ALU_result <= X"82305254";
+s_PC <= X"51659BD5";
+s_imm <= X"B8C340DD";
+s_ALU_result <= X"602B4333";
 s_PC_source <= X"0";
-s_comparison <= X"4";
-s_zero <= '1';
+s_comparison <= X"5";
+s_zero <= '0';
 s_negative <= '1';
-s_carry <= '0';
+s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"474C5724") report "Case 19 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"51659BD9") report "Case 19 bgeu failed" severity error;
 
 --Test Case 20:
-wait for cCLK_PER;
-s_PC <= X"D4AE3F56";
-s_imm <= X"8B7835A9";
-s_ALU_result <= X"ABA8915A";
+s_PC <= X"F30F518E";
+s_imm <= X"DD8D0172";
+s_ALU_result <= X"87C7F5ED";
 s_PC_source <= X"3";
-s_comparison <= X"0";
-s_zero <= '1';
+s_comparison <= X"3";
+s_zero <= '0';
 s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"602674FF") report "Case 20 beq failed" severity error;
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"F30F5192") report "Case 20 bge failed" severity error;
 
 --Test Case 21:
-wait for cCLK_PER;
-s_PC <= X"C2384DE6";
-s_imm <= X"A5DA5CB3";
-s_ALU_result <= X"06E73545";
-s_PC_source <= X"0";
+s_PC <= X"40FB3CEF";
+s_imm <= X"89F3B8F2";
+s_ALU_result <= X"21CDBFBA";
+s_PC_source <= X"2";
 s_comparison <= X"5";
-s_zero <= '0';
-s_negative <= '1';
+s_zero <= '1';
+s_negative <= '0';
 s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"C2384DEA") report "Case 21 bgeu failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"21CDBFBA") report "Case 21 bgeu failed" severity error;
 
 --Test Case 22:
-wait for cCLK_PER;
-s_PC <= X"DB330BF2";
-s_imm <= X"B4A222BA";
-s_ALU_result <= X"94799EAC";
-s_PC_source <= X"1";
-s_comparison <= X"2";
+s_PC <= X"5A3363AE";
+s_imm <= X"12E8A56A";
+s_ALU_result <= X"ED31ECD0";
+s_PC_source <= X"0";
+s_comparison <= X"3";
 s_zero <= '0';
 s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"DB330BF6") report "Case 22 blt failed" severity error;
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"5A3363B2") report "Case 22 bge failed" severity error;
 
 --Test Case 23:
-wait for cCLK_PER;
-s_PC <= X"2A4B5419";
-s_imm <= X"8A88C374";
-s_ALU_result <= X"C5A6D68E";
-s_PC_source <= X"3";
+s_PC <= X"2421ECF5";
+s_imm <= X"AC0B5930";
+s_ALU_result <= X"CBBFE260";
+s_PC_source <= X"0";
 s_comparison <= X"0";
-s_zero <= '1';
-s_negative <= '1';
+s_zero <= '0';
+s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"B4D4178D") report "Case 23 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"2421ECF9") report "Case 23 beq failed" severity error;
 
 --Test Case 24:
-wait for cCLK_PER;
-s_PC <= X"6098943F";
-s_imm <= X"BC3D5B15";
-s_ALU_result <= X"E5ADFFAE";
-s_PC_source <= X"2";
-s_comparison <= X"4";
+s_PC <= X"41AC30FA";
+s_imm <= X"6010686B";
+s_ALU_result <= X"DDAC30ED";
+s_PC_source <= X"3";
+s_comparison <= X"0";
 s_zero <= '1';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"E5ADFFAE") report "Case 24 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"A1BC9965") report "Case 24 beq failed" severity error;
 
 --Test Case 25:
-wait for cCLK_PER;
-s_PC <= X"50B47E57";
-s_imm <= X"3265A586";
-s_ALU_result <= X"E14352C3";
-s_PC_source <= X"1";
-s_comparison <= X"5";
-s_zero <= '0';
-s_negative <= '0';
+s_PC <= X"0235B239";
+s_imm <= X"440CF724";
+s_ALU_result <= X"0191BDBB";
+s_PC_source <= X"2";
+s_comparison <= X"0";
+s_zero <= '1';
+s_negative <= '1';
 s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"831A23DD") report "Case 25 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"0191BDBB") report "Case 25 beq failed" severity error;
 
 --Test Case 26:
-wait for cCLK_PER;
-s_PC <= X"E162C245";
-s_imm <= X"8A3B39B1";
-s_ALU_result <= X"9CC2110D";
-s_PC_source <= X"2";
-s_comparison <= X"1";
+s_PC <= X"4B196D7D";
+s_imm <= X"8409ECEE";
+s_ALU_result <= X"7A04B353";
+s_PC_source <= X"0";
+s_comparison <= X"4";
 s_zero <= '0';
-s_negative <= '0';
+s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"9CC2110D") report "Case 26 bne failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"4B196D81") report "Case 26 bltu failed" severity error;
 
 --Test Case 27:
-wait for cCLK_PER;
-s_PC <= X"79BB7446";
-s_imm <= X"79D80B9A";
-s_ALU_result <= X"5CE65104";
-s_PC_source <= X"0";
-s_comparison <= X"5";
+s_PC <= X"B315B4F0";
+s_imm <= X"6642CC2F";
+s_ALU_result <= X"0758E8D5";
+s_PC_source <= X"1";
+s_comparison <= X"2";
 s_zero <= '1';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"79BB744A") report "Case 27 bgeu failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"1958811F") report "Case 27 blt failed" severity error;
 
 --Test Case 28:
-wait for cCLK_PER;
-s_PC <= X"54B94005";
-s_imm <= X"C684E1C7";
-s_ALU_result <= X"D5240041";
+s_PC <= X"3361802F";
+s_imm <= X"962F203A";
+s_ALU_result <= X"71D92F74";
 s_PC_source <= X"1";
-s_comparison <= X"1";
-s_zero <= '0';
+s_comparison <= X"5";
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '1';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"1B3E21CC") report "Case 28 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"33618033") report "Case 28 bgeu failed" severity error;
 
 --Test Case 29:
-wait for cCLK_PER;
-s_PC <= X"50E15AA9";
-s_imm <= X"98A046AC";
-s_ALU_result <= X"1D2F595E";
-s_PC_source <= X"3";
-s_comparison <= X"5";
+s_PC <= X"B2064C97";
+s_imm <= X"F7F69DFE";
+s_ALU_result <= X"88B9E50E";
+s_PC_source <= X"0";
+s_comparison <= X"0";
 s_zero <= '1';
-s_negative <= '0';
+s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"50E15AAD") report "Case 29 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"B2064C9B") report "Case 29 beq failed" severity error;
 
 --Test Case 30:
-wait for cCLK_PER;
-s_PC <= X"46443B64";
-s_imm <= X"5298276D";
-s_ALU_result <= X"69D90776";
-s_PC_source <= X"0";
-s_comparison <= X"4";
+s_PC <= X"3E2ECB3D";
+s_imm <= X"AF45482B";
+s_ALU_result <= X"E10E383E";
+s_PC_source <= X"3";
+s_comparison <= X"5";
 s_zero <= '0';
 s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"46443B68") report "Case 30 bltu failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"ED741368") report "Case 30 bgeu failed" severity error;
 
 --Test Case 31:
-wait for cCLK_PER;
-s_PC <= X"A730ECB2";
-s_imm <= X"166A021E";
-s_ALU_result <= X"196316C6";
-s_PC_source <= X"3";
-s_comparison <= X"3";
+s_PC <= X"A90AC12D";
+s_imm <= X"A8003824";
+s_ALU_result <= X"78965814";
+s_PC_source <= X"0";
+s_comparison <= X"1";
 s_zero <= '0';
 s_negative <= '0';
-s_carry <= '0';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"BD9AEED0") report "Case 31 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"A90AC131") report "Case 31 bne failed" severity error;
 
 --Test Case 32:
-wait for cCLK_PER;
-s_PC <= X"9CB2BA66";
-s_imm <= X"E63AF5AB";
-s_ALU_result <= X"C195ABA4";
-s_PC_source <= X"3";
-s_comparison <= X"2";
+s_PC <= X"31C7A097";
+s_imm <= X"B4C32F8A";
+s_ALU_result <= X"89417E86";
+s_PC_source <= X"2";
+s_comparison <= X"3";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"9CB2BA6A") report "Case 32 blt failed" severity error;
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"89417E86") report "Case 32 bge failed" severity error;
 
 --Test Case 33:
-wait for cCLK_PER;
-s_PC <= X"6068D1D9";
-s_imm <= X"27CD0874";
-s_ALU_result <= X"2BC227E3";
-s_PC_source <= X"0";
-s_comparison <= X"3";
+s_PC <= X"C428A028";
+s_imm <= X"6A3CD752";
+s_ALU_result <= X"33773888";
+s_PC_source <= X"3";
+s_comparison <= X"5";
 s_zero <= '1';
-s_negative <= '0';
+s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"6068D1DD") report "Case 33 bge failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"C428A02C") report "Case 33 bgeu failed" severity error;
 
 --Test Case 34:
-wait for cCLK_PER;
-s_PC <= X"A887B425";
-s_imm <= X"BB14E430";
-s_ALU_result <= X"ED1B3C68";
-s_PC_source <= X"2";
-s_comparison <= X"1";
+s_PC <= X"A5ACE6D5";
+s_imm <= X"3D1458EE";
+s_ALU_result <= X"57AACD7F";
+s_PC_source <= X"0";
+s_comparison <= X"3";
 s_zero <= '0';
 s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"ED1B3C68") report "Case 34 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"A5ACE6D9") report "Case 34 bge failed" severity error;
 
 --Test Case 35:
-wait for cCLK_PER;
-s_PC <= X"3D47BEF2";
-s_imm <= X"6DB49EFA";
-s_ALU_result <= X"BCD1BC16";
-s_PC_source <= X"3";
+s_PC <= X"09F51F2A";
+s_imm <= X"D6122C31";
+s_ALU_result <= X"D5C77A4D";
+s_PC_source <= X"2";
 s_comparison <= X"3";
-s_zero <= '1';
+s_zero <= '0';
 s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"AAFC5DEC") report "Case 35 bge failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"D5C77A4D") report "Case 35 bge failed" severity error;
 
 --Test Case 36:
-wait for cCLK_PER;
-s_PC <= X"C5472FC3";
-s_imm <= X"AB73ABCA";
-s_ALU_result <= X"A27808D2";
+s_PC <= X"87A69DC2";
+s_imm <= X"B9FB692E";
+s_ALU_result <= X"C2A240B4";
 s_PC_source <= X"3";
-s_comparison <= X"2";
-s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"C5472FC7") report "Case 36 blt failed" severity error;
+s_comparison <= X"4";
+s_zero <= '0';
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"41A206F0") report "Case 36 bltu failed" severity error;
 
 --Test Case 37:
-wait for cCLK_PER;
-s_PC <= X"0A9E2580";
-s_imm <= X"5AC105C3";
-s_ALU_result <= X"3F0AA118";
+s_PC <= X"48790E92";
+s_imm <= X"43BCCDEF";
+s_ALU_result <= X"333FBB1F";
 s_PC_source <= X"2";
-s_comparison <= X"4";
-s_zero <= '1';
-s_negative <= '0';
+s_comparison <= X"3";
+s_zero <= '0';
+s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"3F0AA118") report "Case 37 bltu failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"333FBB1F") report "Case 37 bge failed" severity error;
 
 --Test Case 38:
-wait for cCLK_PER;
-s_PC <= X"08A6704B";
-s_imm <= X"60B070AF";
-s_ALU_result <= X"7B825018";
-s_PC_source <= X"3";
-s_comparison <= X"3";
-s_zero <= '1';
-s_negative <= '1';
+s_PC <= X"717042E7";
+s_imm <= X"A6CA17D2";
+s_ALU_result <= X"D15EE4FD";
+s_PC_source <= X"1";
+s_comparison <= X"2";
+s_zero <= '0';
+s_negative <= '0';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"6956E0FA") report "Case 38 bge failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"717042EB") report "Case 38 blt failed" severity error;
 
 --Test Case 39:
-wait for cCLK_PER;
-s_PC <= X"CD7BD10B";
-s_imm <= X"A48F0134";
-s_ALU_result <= X"CB49D0CA";
-s_PC_source <= X"1";
-s_comparison <= X"4";
+s_PC <= X"7E2188BF";
+s_imm <= X"6789C413";
+s_ALU_result <= X"9F080F08";
+s_PC_source <= X"3";
+s_comparison <= X"2";
 s_zero <= '0';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"CD7BD10F") report "Case 39 bltu failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"7E2188C3") report "Case 39 blt failed" severity error;
 
 --Test Case 40:
-wait for cCLK_PER;
-s_PC <= X"BA61CF69";
-s_imm <= X"1724BED4";
-s_ALU_result <= X"829A7257";
-s_PC_source <= X"3";
-s_comparison <= X"1";
+s_PC <= X"A1847405";
+s_imm <= X"86DF2814";
+s_ALU_result <= X"8FAF7F54";
+s_PC_source <= X"2";
+s_comparison <= X"2";
 s_zero <= '0';
-s_negative <= '1';
-s_carry <= '0';
+s_negative <= '0';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"D1868E3D") report "Case 40 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"8FAF7F54") report "Case 40 blt failed" severity error;
 
 --Test Case 41:
-wait for cCLK_PER;
-s_PC <= X"1F061DBC";
-s_imm <= X"C73B7EB1";
-s_ALU_result <= X"0249934F";
+s_PC <= X"57F8F5CC";
+s_imm <= X"F086406C";
+s_ALU_result <= X"D073BB22";
 s_PC_source <= X"2";
-s_comparison <= X"5";
+s_comparison <= X"1";
 s_zero <= '1';
 s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"0249934F") report "Case 41 bgeu failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"D073BB22") report "Case 41 bne failed" severity error;
 
 --Test Case 42:
-wait for cCLK_PER;
-s_PC <= X"75DEB351";
-s_imm <= X"1ACFB7EA";
-s_ALU_result <= X"96924B7F";
+s_PC <= X"C3304374";
+s_imm <= X"A4DFDED3";
+s_ALU_result <= X"EE405A15";
 s_PC_source <= X"0";
-s_comparison <= X"0";
-s_zero <= '0';
+s_comparison <= X"4";
+s_zero <= '1';
 s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"75DEB355") report "Case 42 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"C3304378") report "Case 42 bltu failed" severity error;
 
 --Test Case 43:
-wait for cCLK_PER;
-s_PC <= X"F85CDF56";
-s_imm <= X"A244D0AF";
-s_ALU_result <= X"CCA4B568";
-s_PC_source <= X"0";
-s_comparison <= X"1";
-s_zero <= '0';
+s_PC <= X"9167CD05";
+s_imm <= X"E82F43DD";
+s_ALU_result <= X"6BD399EA";
+s_PC_source <= X"3";
+s_comparison <= X"0";
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '0';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"F85CDF5A") report "Case 43 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"799710E2") report "Case 43 beq failed" severity error;
 
 --Test Case 44:
-wait for cCLK_PER;
-s_PC <= X"D94BB149";
-s_imm <= X"476C0500";
-s_ALU_result <= X"6540EDE0";
+s_PC <= X"E157876A";
+s_imm <= X"6E72AE58";
+s_ALU_result <= X"A17F98E1";
 s_PC_source <= X"0";
-s_comparison <= X"1";
-s_zero <= '0';
-s_negative <= '1';
+s_comparison <= X"0";
+s_zero <= '1';
+s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"D94BB14D") report "Case 44 bne failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"E157876E") report "Case 44 beq failed" severity error;
 
 --Test Case 45:
-wait for cCLK_PER;
-s_PC <= X"748B4761";
-s_imm <= X"D1D5B6A1";
-s_ALU_result <= X"4216FF05";
+s_PC <= X"EAF1A914";
+s_imm <= X"CFC5E9F3";
+s_ALU_result <= X"C3E87CDD";
 s_PC_source <= X"2";
-s_comparison <= X"2";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '1';
+s_comparison <= X"4";
+s_zero <= '1';
+s_negative <= '0';
+s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"4216FF05") report "Case 45 blt failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"C3E87CDD") report "Case 45 bltu failed" severity error;
 
 --Test Case 46:
-wait for cCLK_PER;
-s_PC <= X"2828B762";
-s_imm <= X"291BDB2B";
-s_ALU_result <= X"A169930D";
+s_PC <= X"2D63A4DD";
+s_imm <= X"8C9DA319";
+s_ALU_result <= X"BABD5A09";
 s_PC_source <= X"0";
-s_comparison <= X"0";
-s_zero <= '0';
+s_comparison <= X"1";
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"2828B766") report "Case 46 beq failed" severity error;
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"2D63A4E1") report "Case 46 bne failed" severity error;
 
 --Test Case 47:
-wait for cCLK_PER;
-s_PC <= X"4575EECF";
-s_imm <= X"9D3067EA";
-s_ALU_result <= X"72A8D509";
-s_PC_source <= X"1";
-s_comparison <= X"2";
-s_zero <= '1';
-s_negative <= '0';
+s_PC <= X"C28B98CF";
+s_imm <= X"BD839EB1";
+s_ALU_result <= X"081C3ACD";
+s_PC_source <= X"2";
+s_comparison <= X"4";
+s_zero <= '0';
+s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"E2A656B9") report "Case 47 blt failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"081C3ACD") report "Case 47 bltu failed" severity error;
 
 --Test Case 48:
-wait for cCLK_PER;
-s_PC <= X"C45931F0";
-s_imm <= X"70A64BED";
-s_ALU_result <= X"FE2E9E0D";
-s_PC_source <= X"0";
-s_comparison <= X"3";
+s_PC <= X"0CBB3380";
+s_imm <= X"E8116C05";
+s_ALU_result <= X"180574C7";
+s_PC_source <= X"3";
+s_comparison <= X"0";
 s_zero <= '0';
 s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"C45931F4") report "Case 48 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"0CBB3384") report "Case 48 beq failed" severity error;
 
 --Test Case 49:
-wait for cCLK_PER;
-s_PC <= X"F5747F74";
-s_imm <= X"191F42F8";
-s_ALU_result <= X"F24C666D";
+s_PC <= X"87AB6602";
+s_imm <= X"8C15C1AB";
+s_ALU_result <= X"A32CD0CA";
 s_PC_source <= X"1";
-s_comparison <= X"4";
+s_comparison <= X"0";
 s_zero <= '0';
 s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"F5747F78") report "Case 49 bltu failed" severity error;
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"87AB6606") report "Case 49 beq failed" severity error;
 
 --Test Case 50:
-wait for cCLK_PER;
-s_PC <= X"ED8A24FF";
-s_imm <= X"0A91585E";
-s_ALU_result <= X"77766503";
-s_PC_source <= X"3";
-s_comparison <= X"2";
+s_PC <= X"F8C66604";
+s_imm <= X"1E2A7142";
+s_ALU_result <= X"07A75DBC";
+s_PC_source <= X"0";
+s_comparison <= X"1";
 s_zero <= '1';
 s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"F81B7D5D") report "Case 50 blt failed" severity error;
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"F8C66608") report "Case 50 bne failed" severity error;
 
 --Test Case 51:
-wait for cCLK_PER;
-s_PC <= X"70D245A4";
-s_imm <= X"A5630B8D";
-s_ALU_result <= X"5D492728";
-s_PC_source <= X"2";
+s_PC <= X"B4B11794";
+s_imm <= X"8F427E48";
+s_ALU_result <= X"904AABB1";
+s_PC_source <= X"3";
 s_comparison <= X"1";
 s_zero <= '1';
-s_negative <= '0';
+s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"5D492728") report "Case 51 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"B4B11798") report "Case 51 bne failed" severity error;
 
 --Test Case 52:
-wait for cCLK_PER;
-s_PC <= X"64A89AEE";
-s_imm <= X"A10F368F";
-s_ALU_result <= X"CCADAC5E";
+s_PC <= X"832DA5F0";
+s_imm <= X"1EEFBDDD";
+s_ALU_result <= X"CD0D1C13";
 s_PC_source <= X"2";
-s_comparison <= X"1";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '1';
+s_comparison <= X"2";
+s_zero <= '1';
+s_negative <= '0';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"CCADAC5E") report "Case 52 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"CD0D1C13") report "Case 52 blt failed" severity error;
 
 --Test Case 53:
-wait for cCLK_PER;
-s_PC <= X"A3EEDF79";
-s_imm <= X"5A044480";
-s_ALU_result <= X"87E27329";
+s_PC <= X"D7CBAEF9";
+s_imm <= X"00E38513";
+s_ALU_result <= X"5E2A6CD0";
 s_PC_source <= X"3";
-s_comparison <= X"4";
-s_zero <= '1';
+s_comparison <= X"1";
+s_zero <= '0';
 s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"FDF323F9") report "Case 53 bltu failed" severity error;
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"D8AF340C") report "Case 53 bne failed" severity error;
 
 --Test Case 54:
-wait for cCLK_PER;
-s_PC <= X"42681EFC";
-s_imm <= X"709DBDC7";
-s_ALU_result <= X"2A8DE256";
+s_PC <= X"95548350";
+s_imm <= X"6DC6A5F6";
+s_ALU_result <= X"AABC6EBB";
 s_PC_source <= X"0";
-s_comparison <= X"2";
+s_comparison <= X"5";
 s_zero <= '0';
 s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"42681F00") report "Case 54 blt failed" severity error;
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"95548354") report "Case 54 bgeu failed" severity error;
 
 --Test Case 55:
-wait for cCLK_PER;
-s_PC <= X"6AAF0751";
-s_imm <= X"7CED473C";
-s_ALU_result <= X"9CB46601";
+s_PC <= X"97AEE191";
+s_imm <= X"A9FAB777";
+s_ALU_result <= X"DDCD108D";
 s_PC_source <= X"1";
 s_comparison <= X"3";
-s_zero <= '0';
+s_zero <= '1';
 s_negative <= '1';
-s_carry <= '0';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"6AAF0755") report "Case 55 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"97AEE195") report "Case 55 bge failed" severity error;
 
 --Test Case 56:
-wait for cCLK_PER;
-s_PC <= X"855B3511";
-s_imm <= X"F7B5FD4C";
-s_ALU_result <= X"C0587756";
-s_PC_source <= X"2";
+s_PC <= X"ADFF2DE2";
+s_imm <= X"8712BB7F";
+s_ALU_result <= X"DF19C7F7";
+s_PC_source <= X"3";
 s_comparison <= X"4";
-s_zero <= '1';
-s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"C0587756") report "Case 56 bltu failed" severity error;
+s_zero <= '0';
+s_negative <= '0';
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"3511E961") report "Case 56 bltu failed" severity error;
 
 --Test Case 57:
-wait for cCLK_PER;
-s_PC <= X"E8DA4121";
-s_imm <= X"0EA3B06C";
-s_ALU_result <= X"7F5E1062";
-s_PC_source <= X"0";
-s_comparison <= X"4";
-s_zero <= '1';
-s_negative <= '1';
+s_PC <= X"A4EFEF9F";
+s_imm <= X"6D2A2009";
+s_ALU_result <= X"ABCA8DC4";
+s_PC_source <= X"2";
+s_comparison <= X"1";
+s_zero <= '0';
+s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"E8DA4125") report "Case 57 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"ABCA8DC4") report "Case 57 bne failed" severity error;
 
 --Test Case 58:
-wait for cCLK_PER;
-s_PC <= X"FF1906C6";
-s_imm <= X"75F65B42";
-s_ALU_result <= X"B00A3456";
-s_PC_source <= X"2";
-s_comparison <= X"2";
-s_zero <= '0';
+s_PC <= X"50AE8768";
+s_imm <= X"3F3D26F3";
+s_ALU_result <= X"20A3C588";
+s_PC_source <= X"0";
+s_comparison <= X"4";
+s_zero <= '1';
 s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"B00A3456") report "Case 58 blt failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"50AE876C") report "Case 58 bltu failed" severity error;
 
 --Test Case 59:
-wait for cCLK_PER;
-s_PC <= X"4E31A46B";
-s_imm <= X"B245C2C9";
-s_ALU_result <= X"0D99580C";
-s_PC_source <= X"0";
-s_comparison <= X"0";
+s_PC <= X"9EF89A9F";
+s_imm <= X"E1D09EAF";
+s_ALU_result <= X"1142A2F8";
+s_PC_source <= X"1";
+s_comparison <= X"3";
 s_zero <= '1';
-s_negative <= '1';
-s_carry <= '1';
+s_negative <= '0';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"4E31A46F") report "Case 59 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"80C9394E") report "Case 59 bge failed" severity error;
 
 --Test Case 60:
-wait for cCLK_PER;
-s_PC <= X"02247832";
-s_imm <= X"37FDD13A";
-s_ALU_result <= X"4AF0D448";
-s_PC_source <= X"2";
+s_PC <= X"5742E3E5";
+s_imm <= X"03DD3E9D";
+s_ALU_result <= X"5AB2E9D5";
+s_PC_source <= X"3";
 s_comparison <= X"5";
-s_zero <= '1';
+s_zero <= '0';
 s_negative <= '0';
-s_carry <= '1';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"4AF0D448") report "Case 60 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"5742E3E9") report "Case 60 bgeu failed" severity error;
 
 --Test Case 61:
-wait for cCLK_PER;
-s_PC <= X"44C8E14E";
-s_imm <= X"BAA6C9E2";
-s_ALU_result <= X"F207EBA1";
-s_PC_source <= X"3";
-s_comparison <= X"1";
+s_PC <= X"2AF45FA7";
+s_imm <= X"619DC080";
+s_ALU_result <= X"C22F1272";
+s_PC_source <= X"0";
+s_comparison <= X"0";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"44C8E152") report "Case 61 bne failed" severity error;
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"2AF45FAB") report "Case 61 beq failed" severity error;
 
 --Test Case 62:
-wait for cCLK_PER;
-s_PC <= X"338971CC";
-s_imm <= X"62073F3F";
-s_ALU_result <= X"33D4F961";
-s_PC_source <= X"1";
-s_comparison <= X"2";
-s_zero <= '1';
+s_PC <= X"4529B738";
+s_imm <= X"607AB8EA";
+s_ALU_result <= X"46D81669";
+s_PC_source <= X"0";
+s_comparison <= X"1";
+s_zero <= '0';
 s_negative <= '1';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"9590B10B") report "Case 62 blt failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"4529B73C") report "Case 62 bne failed" severity error;
 
 --Test Case 63:
-wait for cCLK_PER;
-s_PC <= X"84093838";
-s_imm <= X"69A2818E";
-s_ALU_result <= X"C2A07EF2";
-s_PC_source <= X"3";
-s_comparison <= X"1";
-s_zero <= '0';
+s_PC <= X"6475D284";
+s_imm <= X"B90C9E77";
+s_ALU_result <= X"8D339109";
+s_PC_source <= X"1";
+s_comparison <= X"3";
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"EDABB9C6") report "Case 63 bne failed" severity error;
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"1D8270FB") report "Case 63 bge failed" severity error;
 
 --Test Case 64:
+s_PC <= X"B2416817";
+s_imm <= X"52A4B427";
+s_ALU_result <= X"B3607F23";
+s_PC_source <= X"3";
+s_comparison <= X"0";
+s_zero <= '1';
+s_negative <= '0';
+s_carry <= '0';
+s_overflow <= '1';
 wait for cCLK_PER;
-s_PC <= X"F9F38037";
-s_imm <= X"6A1FFE76";
-s_ALU_result <= X"FBB65F0C";
-s_PC_source <= X"1";
-s_comparison <= X"2";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"64137EAD") report "Case 64 blt failed" severity error;
+assert (s_new_PC = X"04E61C3E") report "Case 64 beq failed" severity error;
 
 --Test Case 65:
-wait for cCLK_PER;
-s_PC <= X"78BAC679";
-s_imm <= X"D82ABD8E";
-s_ALU_result <= X"C4C98C97";
+s_PC <= X"EA34EA90";
+s_imm <= X"B41384E6";
+s_ALU_result <= X"A7B46BAE";
 s_PC_source <= X"1";
-s_comparison <= X"4";
+s_comparison <= X"0";
 s_zero <= '1';
-s_negative <= '1';
-s_carry <= '0';
+s_negative <= '0';
+s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"50E58407") report "Case 65 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"9E486F76") report "Case 65 beq failed" severity error;
 
 --Test Case 66:
-wait for cCLK_PER;
-s_PC <= X"4919A2D5";
-s_imm <= X"B093A697";
-s_ALU_result <= X"FF38742A";
-s_PC_source <= X"0";
+s_PC <= X"D5AFFD1A";
+s_imm <= X"170BF16A";
+s_ALU_result <= X"B7ED1C1B";
+s_PC_source <= X"3";
 s_comparison <= X"0";
 s_zero <= '1';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"4919A2D9") report "Case 66 beq failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"ECBBEE84") report "Case 66 beq failed" severity error;
 
 --Test Case 67:
-wait for cCLK_PER;
-s_PC <= X"0FAF0E20";
-s_imm <= X"C9927908";
-s_ALU_result <= X"D111A5F9";
-s_PC_source <= X"3";
-s_comparison <= X"1";
+s_PC <= X"CD7371B0";
+s_imm <= X"12D71B05";
+s_ALU_result <= X"D751EAE9";
+s_PC_source <= X"0";
+s_comparison <= X"0";
 s_zero <= '0';
 s_negative <= '1';
-s_carry <= '1';
+s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"D9418728") report "Case 67 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"CD7371B4") report "Case 67 beq failed" severity error;
 
 --Test Case 68:
-wait for cCLK_PER;
-s_PC <= X"EF572075";
-s_imm <= X"3CDD6D43";
-s_ALU_result <= X"583C6506";
-s_PC_source <= X"2";
-s_comparison <= X"5";
+s_PC <= X"0863DCEB";
+s_imm <= X"CFD7C9B0";
+s_ALU_result <= X"1DF57825";
+s_PC_source <= X"3";
+s_comparison <= X"1";
 s_zero <= '0';
-s_negative <= '1';
-s_carry <= '0';
+s_negative <= '0';
+s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"583C6506") report "Case 68 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"D83BA69B") report "Case 68 bne failed" severity error;
 
 --Test Case 69:
-wait for cCLK_PER;
-s_PC <= X"6569A3C8";
-s_imm <= X"E9D30F6D";
-s_ALU_result <= X"C0996D65";
-s_PC_source <= X"3";
-s_comparison <= X"0";
-s_zero <= '0';
+s_PC <= X"CCF24577";
+s_imm <= X"F9CB9FCB";
+s_ALU_result <= X"1D79913D";
+s_PC_source <= X"0";
+s_comparison <= X"5";
+s_zero <= '1';
 s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"6569A3CC") report "Case 69 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"CCF2457B") report "Case 69 bgeu failed" severity error;
 
 --Test Case 70:
-wait for cCLK_PER;
-s_PC <= X"3E944CD7";
-s_imm <= X"9645CB37";
-s_ALU_result <= X"E4C70B38";
-s_PC_source <= X"0";
-s_comparison <= X"3";
+s_PC <= X"D7C406AA";
+s_imm <= X"4E01491B";
+s_ALU_result <= X"54F0098C";
+s_PC_source <= X"1";
+s_comparison <= X"0";
 s_zero <= '0';
-s_negative <= '1';
+s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"3E944CDB") report "Case 70 bge failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"D7C406AE") report "Case 70 beq failed" severity error;
 
 --Test Case 71:
-wait for cCLK_PER;
-s_PC <= X"D13C515D";
-s_imm <= X"321D1B58";
-s_ALU_result <= X"604EB46E";
-s_PC_source <= X"3";
+s_PC <= X"44EB867D";
+s_imm <= X"293753B7";
+s_ALU_result <= X"A36CAEAC";
+s_PC_source <= X"1";
 s_comparison <= X"4";
-s_zero <= '1';
-s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"03596CB5") report "Case 71 bltu failed" severity error;
+s_zero <= '0';
+s_negative <= '0';
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"44EB8681") report "Case 71 bltu failed" severity error;
 
 --Test Case 72:
-wait for cCLK_PER;
-s_PC <= X"38CF6557";
-s_imm <= X"5FC1CA6D";
-s_ALU_result <= X"11BD3B8C";
-s_PC_source <= X"1";
-s_comparison <= X"0";
+s_PC <= X"EE82F90B";
+s_imm <= X"7F28DADE";
+s_ALU_result <= X"A55E43E3";
+s_PC_source <= X"3";
+s_comparison <= X"5";
 s_zero <= '1';
-s_negative <= '0';
-s_carry <= '0';
+s_negative <= '1';
+s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"98912FC4") report "Case 72 beq failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"6DABD3E9") report "Case 72 bgeu failed" severity error;
 
 --Test Case 73:
-wait for cCLK_PER;
-s_PC <= X"742C05BF";
-s_imm <= X"04985FFC";
-s_ALU_result <= X"6790CB76";
-s_PC_source <= X"0";
+s_PC <= X"1A676D83";
+s_imm <= X"47002AED";
+s_ALU_result <= X"5267239D";
+s_PC_source <= X"1";
 s_comparison <= X"4";
-s_zero <= '0';
+s_zero <= '1';
 s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"742C05C3") report "Case 73 bltu failed" severity error;
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"1A676D87") report "Case 73 bltu failed" severity error;
 
 --Test Case 74:
-wait for cCLK_PER;
-s_PC <= X"3EF97A3E";
-s_imm <= X"6DDA782A";
-s_ALU_result <= X"0C529851";
+s_PC <= X"889216D3";
+s_imm <= X"0936206E";
+s_ALU_result <= X"3D1A1EB6";
 s_PC_source <= X"1";
-s_comparison <= X"0";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"3EF97A42") report "Case 74 beq failed" severity error;
+s_comparison <= X"5";
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"91C83741") report "Case 74 bgeu failed" severity error;
 
 --Test Case 75:
-wait for cCLK_PER;
-s_PC <= X"C6B1EE70";
-s_imm <= X"9CF9401E";
-s_ALU_result <= X"6D74546A";
-s_PC_source <= X"3";
-s_comparison <= X"5";
-s_zero <= '0';
-s_negative <= '0';
+s_PC <= X"CE076BA7";
+s_imm <= X"4D79320D";
+s_ALU_result <= X"A2404088";
+s_PC_source <= X"0";
+s_comparison <= X"1";
+s_zero <= '1';
+s_negative <= '1';
 s_carry <= '0';
-s_overflow <= '1';
-assert (s_new_PC = X"C6B1EE74") report "Case 75 bgeu failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"CE076BAB") report "Case 75 bne failed" severity error;
 
 --Test Case 76:
-wait for cCLK_PER;
-s_PC <= X"45C238EB";
-s_imm <= X"4D3B2A38";
-s_ALU_result <= X"6C7117B2";
+s_PC <= X"CB4DA02F";
+s_imm <= X"313DC2E5";
+s_ALU_result <= X"872245D0";
 s_PC_source <= X"0";
-s_comparison <= X"5";
+s_comparison <= X"1";
 s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
+s_negative <= '1';
+s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"45C238EF") report "Case 76 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"CB4DA033") report "Case 76 bne failed" severity error;
 
 --Test Case 77:
-wait for cCLK_PER;
-s_PC <= X"007DAA4B";
-s_imm <= X"C11D5122";
-s_ALU_result <= X"05CE8F98";
-s_PC_source <= X"3";
+s_PC <= X"D6DB7C7C";
+s_imm <= X"0CA1D8DE";
+s_ALU_result <= X"88E92AEF";
+s_PC_source <= X"1";
 s_comparison <= X"2";
-s_zero <= '1';
+s_zero <= '0';
 s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"C19AFB6D") report "Case 77 blt failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"E37D555A") report "Case 77 blt failed" severity error;
 
 --Test Case 78:
-wait for cCLK_PER;
-s_PC <= X"00C79165";
-s_imm <= X"DF4B6CF4";
-s_ALU_result <= X"C2D09875";
+s_PC <= X"59056FFB";
+s_imm <= X"188DB30E";
+s_ALU_result <= X"D7A2750B";
 s_PC_source <= X"0";
-s_comparison <= X"1";
-s_zero <= '0';
+s_comparison <= X"3";
+s_zero <= '1';
 s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '1';
-assert (s_new_PC = X"00C79169") report "Case 78 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"59056FFF") report "Case 78 bge failed" severity error;
 
 --Test Case 79:
-wait for cCLK_PER;
-s_PC <= X"5CD69EE5";
-s_imm <= X"0A2C68BF";
-s_ALU_result <= X"69AFFE38";
-s_PC_source <= X"2";
-s_comparison <= X"2";
-s_zero <= '0';
-s_negative <= '0';
+s_PC <= X"928C3CDE";
+s_imm <= X"B8059D9C";
+s_ALU_result <= X"DF7E7B4B";
+s_PC_source <= X"0";
+s_comparison <= X"3";
+s_zero <= '1';
+s_negative <= '1';
 s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"69AFFE38") report "Case 79 blt failed" severity error;
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"928C3CE2") report "Case 79 bge failed" severity error;
 
 --Test Case 80:
-wait for cCLK_PER;
-s_PC <= X"DE83CDD2";
-s_imm <= X"39F4A96B";
-s_ALU_result <= X"E3599130";
-s_PC_source <= X"2";
-s_comparison <= X"4";
+s_PC <= X"01462A5A";
+s_imm <= X"ABE361D2";
+s_ALU_result <= X"2E59357F";
+s_PC_source <= X"1";
+s_comparison <= X"3";
 s_zero <= '1';
 s_negative <= '1';
 s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"E3599130") report "Case 80 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"AD298C2C") report "Case 80 bge failed" severity error;
 
 --Test Case 81:
-wait for cCLK_PER;
-s_PC <= X"FE616C15";
-s_imm <= X"47587E7F";
-s_ALU_result <= X"58AEA93B";
+s_PC <= X"1D06EEA2";
+s_imm <= X"20CFEFE7";
+s_ALU_result <= X"A20A4316";
 s_PC_source <= X"3";
-s_comparison <= X"1";
-s_zero <= '1';
+s_comparison <= X"2";
+s_zero <= '0';
 s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"FE616C19") report "Case 81 bne failed" severity error;
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"3DD6DE89") report "Case 81 blt failed" severity error;
 
 --Test Case 82:
-wait for cCLK_PER;
-s_PC <= X"D2A703D4";
-s_imm <= X"A7B50059";
-s_ALU_result <= X"73FFEE97";
-s_PC_source <= X"2";
-s_comparison <= X"3";
-s_zero <= '0';
-s_negative <= '1';
+s_PC <= X"D4A43FC4";
+s_imm <= X"6223C9E3";
+s_ALU_result <= X"59F61E99";
+s_PC_source <= X"1";
+s_comparison <= X"5";
+s_zero <= '1';
+s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"73FFEE97") report "Case 82 bge failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"36C809A7") report "Case 82 bgeu failed" severity error;
 
 --Test Case 83:
-wait for cCLK_PER;
-s_PC <= X"4433EF2C";
-s_imm <= X"A0899A07";
-s_ALU_result <= X"2B078948";
-s_PC_source <= X"0";
+s_PC <= X"F08F44F8";
+s_imm <= X"6A225B45";
+s_ALU_result <= X"C9FE676C";
+s_PC_source <= X"3";
 s_comparison <= X"5";
-s_zero <= '0';
+s_zero <= '1';
 s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"4433EF30") report "Case 83 bgeu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"5AB1A03D") report "Case 83 bgeu failed" severity error;
 
 --Test Case 84:
-wait for cCLK_PER;
-s_PC <= X"E2C9645D";
-s_imm <= X"EA19B4CD";
-s_ALU_result <= X"6AEEBADD";
+s_PC <= X"C4D7E0B7";
+s_imm <= X"EEC8248A";
+s_ALU_result <= X"8335BF3D";
 s_PC_source <= X"2";
 s_comparison <= X"4";
 s_zero <= '1';
-s_negative <= '0';
+s_negative <= '1';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"6AEEBADD") report "Case 84 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"8335BF3D") report "Case 84 bltu failed" severity error;
 
 --Test Case 85:
-wait for cCLK_PER;
-s_PC <= X"7C2EB1FF";
-s_imm <= X"98DB33E2";
-s_ALU_result <= X"5FA9E39B";
-s_PC_source <= X"0";
+s_PC <= X"F145BEC4";
+s_imm <= X"135A7968";
+s_ALU_result <= X"35FAD881";
+s_PC_source <= X"1";
 s_comparison <= X"1";
-s_zero <= '1';
-s_negative <= '1';
+s_zero <= '0';
+s_negative <= '0';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"7C2EB203") report "Case 85 bne failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"04A0382C") report "Case 85 bne failed" severity error;
 
 --Test Case 86:
-wait for cCLK_PER;
-s_PC <= X"F70B5C9C";
-s_imm <= X"4A310E6B";
-s_ALU_result <= X"6F3D44C9";
+s_PC <= X"FC3E045F";
+s_imm <= X"74EB9AD8";
+s_ALU_result <= X"2DFAB521";
 s_PC_source <= X"0";
-s_comparison <= X"3";
-s_zero <= '0';
-s_negative <= '1';
+s_comparison <= X"1";
+s_zero <= '1';
+s_negative <= '0';
 s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"F70B5CA0") report "Case 86 bge failed" severity error;
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"FC3E0463") report "Case 86 bne failed" severity error;
 
 --Test Case 87:
-wait for cCLK_PER;
-s_PC <= X"491A78CF";
-s_imm <= X"1F0C39D8";
-s_ALU_result <= X"432C518E";
-s_PC_source <= X"1";
-s_comparison <= X"2";
-s_zero <= '1';
-s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"6826B2A7") report "Case 87 blt failed" severity error;
-
---Test Case 88:
-wait for cCLK_PER;
-s_PC <= X"D0C24B56";
-s_imm <= X"E0FB39F2";
-s_ALU_result <= X"4DC12278";
-s_PC_source <= X"3";
-s_comparison <= X"5";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"D0C24B5A") report "Case 88 bgeu failed" severity error;
-
---Test Case 89:
-wait for cCLK_PER;
-s_PC <= X"B8DBEECB";
-s_imm <= X"AD0DF525";
-s_ALU_result <= X"A430FC1F";
-s_PC_source <= X"1";
-s_comparison <= X"5";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"65E9E3F0") report "Case 89 bgeu failed" severity error;
-
---Test Case 90:
-wait for cCLK_PER;
-s_PC <= X"BAD18C78";
-s_imm <= X"0DD72B54";
-s_ALU_result <= X"BCD089D7";
-s_PC_source <= X"1";
-s_comparison <= X"1";
-s_zero <= '1';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"BAD18C7C") report "Case 90 bne failed" severity error;
-
---Test Case 91:
-wait for cCLK_PER;
-s_PC <= X"F8D5FD74";
-s_imm <= X"FC3BE2EC";
-s_ALU_result <= X"A1F2A21E";
-s_PC_source <= X"1";
-s_comparison <= X"5";
-s_zero <= '1';
-s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"F8D5FD78") report "Case 91 bgeu failed" severity error;
-
---Test Case 92:
-wait for cCLK_PER;
-s_PC <= X"4C66A90A";
-s_imm <= X"66588161";
-s_ALU_result <= X"40EA7EDF";
-s_PC_source <= X"2";
-s_comparison <= X"4";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"40EA7EDF") report "Case 92 bltu failed" severity error;
-
---Test Case 93:
-wait for cCLK_PER;
-s_PC <= X"A4C0B7DC";
-s_imm <= X"07291856";
-s_ALU_result <= X"38E7975A";
-s_PC_source <= X"3";
-s_comparison <= X"4";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"A4C0B7E0") report "Case 93 bltu failed" severity error;
-
---Test Case 94:
-wait for cCLK_PER;
-s_PC <= X"1F43A9CB";
-s_imm <= X"DDDB5E26";
-s_ALU_result <= X"D49C26AB";
-s_PC_source <= X"1";
-s_comparison <= X"0";
-s_zero <= '0';
-s_negative <= '1';
-s_carry <= '1';
-s_overflow <= '0';
-assert (s_new_PC = X"1F43A9CF") report "Case 94 beq failed" severity error;
-
---Test Case 95:
-wait for cCLK_PER;
-s_PC <= X"A8836909";
-s_imm <= X"463C7ED5";
-s_ALU_result <= X"D897F316";
-s_PC_source <= X"2";
-s_comparison <= X"2";
-s_zero <= '0';
-s_negative <= '0';
-s_carry <= '0';
-s_overflow <= '0';
-assert (s_new_PC = X"D897F316") report "Case 95 blt failed" severity error;
-
---Test Case 96:
-wait for cCLK_PER;
-s_PC <= X"9E0AAFE3";
-s_imm <= X"DF91ED17";
-s_ALU_result <= X"BCBCB9AE";
+s_PC <= X"E7B7F562";
+s_imm <= X"B534A9B7";
+s_ALU_result <= X"02EA5DB8";
 s_PC_source <= X"0";
 s_comparison <= X"2";
 s_zero <= '0';
 s_negative <= '0';
-s_carry <= '1';
-s_overflow <= '1';
-assert (s_new_PC = X"9E0AAFE7") report "Case 96 blt failed" severity error;
-
---Test Case 97:
+s_carry <= '0';
+s_overflow <= '0';
 wait for cCLK_PER;
-s_PC <= X"25F3591A";
-s_imm <= X"F4C5C952";
-s_ALU_result <= X"E0B57F8C";
+assert (s_new_PC = X"E7B7F566") report "Case 87 blt failed" severity error;
+
+--Test Case 88:
+s_PC <= X"54A9648F";
+s_imm <= X"1278BAFC";
+s_ALU_result <= X"D51BE12C";
+s_PC_source <= X"0";
+s_comparison <= X"5";
+s_zero <= '0';
+s_negative <= '1';
+s_carry <= '0';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"54A96493") report "Case 88 bgeu failed" severity error;
+
+--Test Case 89:
+s_PC <= X"6A69C407";
+s_imm <= X"1D25F1F1";
+s_ALU_result <= X"9FB54213";
 s_PC_source <= X"2";
 s_comparison <= X"1";
-s_zero <= '0';
-s_negative <= '0';
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"9FB54213") report "Case 89 bne failed" severity error;
+
+--Test Case 90:
+s_PC <= X"06121B8D";
+s_imm <= X"58B88825";
+s_ALU_result <= X"9BA48CA5";
+s_PC_source <= X"3";
+s_comparison <= X"4";
+s_zero <= '1';
+s_negative <= '1';
 s_carry <= '0';
 s_overflow <= '0';
-assert (s_new_PC = X"E0B57F8C") report "Case 97 bne failed" severity error;
-
---Test Case 98:
 wait for cCLK_PER;
-s_PC <= X"9DB02CAF";
-s_imm <= X"5B38E55B";
-s_ALU_result <= X"86A19734";
-s_PC_source <= X"2";
+assert (s_new_PC = X"5ECAA3B2") report "Case 90 bltu failed" severity error;
+
+--Test Case 91:
+s_PC <= X"0BC4DB9C";
+s_imm <= X"950E4904";
+s_ALU_result <= X"4B77A893";
+s_PC_source <= X"1";
+s_comparison <= X"2";
+s_zero <= '0';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"0BC4DBA0") report "Case 91 blt failed" severity error;
+
+--Test Case 92:
+s_PC <= X"AD9721B7";
+s_imm <= X"B854A597";
+s_ALU_result <= X"A46B1564";
+s_PC_source <= X"1";
 s_comparison <= X"0";
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"65EBC74E") report "Case 92 beq failed" severity error;
+
+--Test Case 93:
+s_PC <= X"41074FB6";
+s_imm <= X"7753ADB6";
+s_ALU_result <= X"2BF0AF4D";
+s_PC_source <= X"1";
+s_comparison <= X"4";
 s_zero <= '0';
 s_negative <= '1';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"86A19734") report "Case 98 beq failed" severity error;
-
---Test Case 99:
 wait for cCLK_PER;
-s_PC <= X"2AB87FF0";
-s_imm <= X"AC33BE2C";
-s_ALU_result <= X"928696DA";
-s_PC_source <= X"3";
+assert (s_new_PC = X"41074FBA") report "Case 93 bltu failed" severity error;
+
+--Test Case 94:
+s_PC <= X"CBA1EB9A";
+s_imm <= X"A75143CC";
+s_ALU_result <= X"C86F305B";
+s_PC_source <= X"0";
 s_comparison <= X"0";
 s_zero <= '0';
-s_negative <= '1';
-s_carry <= '0';
+s_negative <= '0';
+s_carry <= '1';
 s_overflow <= '1';
-assert (s_new_PC = X"2AB87FF4") report "Case 99 beq failed" severity error;
-
---Test Case 100:
 wait for cCLK_PER;
-s_PC <= X"FB71D4BE";
-s_imm <= X"AEDB4C50";
-s_ALU_result <= X"00A190D3";
+assert (s_new_PC = X"CBA1EB9E") report "Case 94 beq failed" severity error;
+
+--Test Case 95:
+s_PC <= X"93027BB9";
+s_imm <= X"74D86818";
+s_ALU_result <= X"A810EC06";
 s_PC_source <= X"3";
-s_comparison <= X"4";
+s_comparison <= X"3";
+s_zero <= '0';
+s_negative <= '0';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"93027BBD") report "Case 95 bge failed" severity error;
+
+--Test Case 96:
+s_PC <= X"8707D728";
+s_imm <= X"9CC00208";
+s_ALU_result <= X"DCD0535D";
+s_PC_source <= X"0";
+s_comparison <= X"3";
 s_zero <= '1';
 s_negative <= '0';
 s_carry <= '1';
 s_overflow <= '0';
-assert (s_new_PC = X"FB71D4C2") report "Case 100 bltu failed" severity error;
+wait for cCLK_PER;
+assert (s_new_PC = X"8707D72C") report "Case 96 bge failed" severity error;
+
+--Test Case 97:
+s_PC <= X"6BEF0A35";
+s_imm <= X"B184D268";
+s_ALU_result <= X"4D7F602C";
+s_PC_source <= X"3";
+s_comparison <= X"2";
+s_zero <= '0';
+s_negative <= '0';
+s_carry <= '0';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"6BEF0A39") report "Case 97 blt failed" severity error;
+
+--Test Case 98:
+s_PC <= X"E5C0AEF5";
+s_imm <= X"DD4FBDCD";
+s_ALU_result <= X"22F307C1";
+s_PC_source <= X"3";
+s_comparison <= X"1";
+s_zero <= '0';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"C3106CC2") report "Case 98 bne failed" severity error;
+
+--Test Case 99:
+s_PC <= X"248C44A7";
+s_imm <= X"29425726";
+s_ALU_result <= X"B05ACB97";
+s_PC_source <= X"0";
+s_comparison <= X"3";
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '0';
+wait for cCLK_PER;
+assert (s_new_PC = X"248C44AB") report "Case 99 bge failed" severity error;
+
+--Test Case 100:
+s_PC <= X"FEBEA240";
+s_imm <= X"E81F2CDA";
+s_ALU_result <= X"0EAB3C81";
+s_PC_source <= X"1";
+s_comparison <= X"3";
+s_zero <= '1';
+s_negative <= '1';
+s_carry <= '1';
+s_overflow <= '1';
+wait for cCLK_PER;
+assert (s_new_PC = X"E6DDCF1A") report "Case 100 bge failed" severity error;
+
 
 
 
