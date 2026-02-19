@@ -1,6 +1,6 @@
 li a0 6
 jal ra foo
-wfi
+j end
 
 foo:
 bne a0 zero skip
@@ -14,4 +14,5 @@ lw ra 0(sp)
 addi sp sp 4
 jalr zero, ra, 0
 
+end:
 wfi

@@ -11,12 +11,12 @@ jal ra, foo
 #a0 = 20 + 10 + 5 + 40 + a6 = 87
 #auipc ra, %pcrel_hi(big_jump)
 #jalr ra, ra %pcrel_lo(big_jump)
-wfi
+j end
 
 foo: 
 beq a1, a6, skip  #terminate the deal at a2 = 10
 bne a2, a3, skip2  #a2 != -1
-addi a2 a2 3 #a2 = a2 + 2
+addi a2 a2 3 #a2 = a2 + 3
 addi a0 a0, 20
 beq zero, zero cond
 skip2:
@@ -44,11 +44,10 @@ jal ra foo #recursive call
 lw ra 0(sp) # get back the return address
 addi sp, sp 4 #deallocate the stack
 skip: jalr zero, ra, 0 #return
-
-wfi #block from programming running off
+j end
 
 
 big_jump:
 slli a2 a2 1 # a2 * 2
-wfi
+end: wfi
 
