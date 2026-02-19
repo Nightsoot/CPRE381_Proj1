@@ -1,6 +1,6 @@
 QuestaSim-64 vcom 2025.1_2 Compiler 2025.04 Apr  7 2025
-Start time: 19:13:05 on Feb 18,2026
-vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd internal/testpy/tb.vhd proj/src/barrel_shifter.vhd proj/src/control_decoder.vhd proj/src/fetch_logic.vhd proj/src/custom_types.vhd proj/src/mem_slice.vhd proj/src/dffg.vhd proj/src/imm_gen.vhd proj/src/RISCV_types.vhd proj/src/mux2t1.vhd proj/src/reg_n.vhd proj/src/reg_file/dffg.vhd proj/src/reg_file/reg_pc.vhd proj/src/reg_file/reg_file.vhd proj/src/reg_file/mux_32_32.vhd proj/src/reg_file/dffg_default_high.vhd proj/src/reg_file/decoder_5_32.vhd proj/src/reg_file/reg_n.vhd proj/src/alu/org2.vhd proj/src/alu/nor32t1.vhd proj/src/alu/andg2.vhd proj/src/alu/adder_S.vhd proj/src/alu/adder.vhd proj/src/alu/xor32.vhd proj/src/alu/alu.vhd proj/src/alu/barrel_shifter.vhd proj/src/alu/or32.vhd proj/src/alu/and32.vhd proj/src/alu/mux_8t1_32.vhd proj/src/alu/xorg2.vhd proj/src/alu/alu_decoder.vhd proj/src/TopLevel/RISCV_Processor.vhd proj/src/TopLevel/mem.vhd 
+Start time: 19:41:06 on Feb 18,2026
+vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd internal/testpy/tb.vhd proj/src/barrel_shifter.vhd proj/src/control_decoder.vhd proj/src/fetch_logic.vhd proj/src/custom_types.vhd proj/src/mem_slice.vhd proj/src/dffg.vhd proj/src/imm_gen.vhd proj/src/RISCV_types.vhd proj/src/mux2t1.vhd proj/src/reg_n.vhd proj/src/reg_file/dffg.vhd proj/src/reg_file/reg_pc.vhd proj/src/reg_file/reg_file.vhd proj/src/reg_file/mux_32_32.vhd proj/src/reg_file/dffg_default_high.vhd proj/src/reg_file/decoder_5_32.vhd proj/src/reg_file/reg_n.vhd proj/src/reg_file/reg_sp.vhd proj/src/alu/org2.vhd proj/src/alu/nor32t1.vhd proj/src/alu/andg2.vhd proj/src/alu/adder_S.vhd proj/src/alu/adder.vhd proj/src/alu/xor32.vhd proj/src/alu/alu.vhd proj/src/alu/barrel_shifter.vhd proj/src/alu/or32.vhd proj/src/alu/and32.vhd proj/src/alu/mux_8t1_32.vhd proj/src/alu/xorg2.vhd proj/src/alu/alu_decoder.vhd proj/src/TopLevel/RISCV_Processor.vhd proj/src/TopLevel/mem.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -11,9 +11,7 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd intern
 -- Loading package ENV
 -- Compiling entity tb
 -- Compiling architecture mixed of tb
-** Warning: proj/src/barrel_shifter.vhd(16): (vcom-1615) Existing entity 'barrel_shifter' at /home/davidnr/CPRE_381/CPRE381_Proj1/proj/src/alu/barrel_shifter.vhd(16) will be overwritten.
 -- Compiling entity barrel_shifter
-** Warning: proj/src/barrel_shifter.vhd(28): (vcom-1615) Existing architecture 'barrel_shifter(structural)' at /home/davidnr/CPRE_381/CPRE381_Proj1/proj/src/alu/barrel_shifter.vhd(28) will be overwritten.
 -- Compiling architecture structural of barrel_shifter
 -- Loading package NUMERIC_STD
 -- Compiling entity control_decoder
@@ -59,6 +57,8 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd intern
 -- Compiling entity reg_n
 ** Warning: proj/src/reg_file/reg_n.vhd(29): (vcom-1615) Existing architecture 'reg_n(structural)' at proj/src/reg_n.vhd(29) will be overwritten.
 -- Compiling architecture structural of reg_n
+-- Compiling entity reg_sp
+-- Compiling architecture structural of reg_sp
 -- Compiling entity org2
 -- Compiling architecture dataflow of org2
 -- Compiling entity nor32t1
@@ -92,5 +92,5 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd intern
 -- Compiling architecture structure of RISCV_Processor
 -- Compiling entity mem
 -- Compiling architecture rtl of mem
-End time: 19:13:05 on Feb 18,2026, Elapsed time: 0:00:00
-Errors: 0, Warnings: 14
+End time: 19:41:06 on Feb 18,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 12

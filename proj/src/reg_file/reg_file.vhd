@@ -44,6 +44,17 @@ architecture mixed of reg_file is
             o_Q : out std_logic_vector(N - 1 downto 0)); -- Data vector output
     end component;
 
+    component reg_sp is
+        generic (N : integer := 32);
+        port (
+            i_CLK : in std_logic; -- Clock input
+            i_RST : in std_logic; -- Reset input
+            i_WE : in std_logic; -- Write enable input
+            i_D : in std_logic_vector(N - 1 downto 0); -- Data vector input
+            o_Q : out std_logic_vector(N - 1 downto 0)); -- Data vector output
+
+    end component;
+
     component decoder_5_32 is
         port (
             i_S : in std_logic_vector(4 downto 0); -- Data vector input
@@ -63,7 +74,8 @@ architecture mixed of reg_file is
 
 begin
 
-    s_write_enable <= s_write_decoded when (i_read_write = '1') else (others => '0');
+    s_write_enable <= s_write_decoded when (i_read_write = '1') else
+        (others => '0');
 
     write_decoder : decoder_5_32 port map(
         i_S => i_write_reg,
@@ -73,30 +85,40 @@ begin
     --Zero reg is always 0, so just output to bus
     s_reg_outputs(0) <= (others => '0');
 
+    --SP register is special
+    G_SP : reg_sp
+    port map(
+        i_CLK => i_CLK,
+        i_RST => i_RST,
+        i_WE => s_write_enable(2),
+        i_D => i_write_value,
+        o_Q => s_reg_outputs(2)
+    );
+
     G_N_REGS : for i in 1 to 31 generate
-        REGI : reg_n port map(
-            i_CLK => i_CLK,
-            i_RST => i_RST,
-            i_WE => s_write_enable(i),
-            i_D => i_write_value,
-            o_Q => s_reg_outputs(i)
-        );
+        regs : if i /= 2 generate
+            REGI : reg_n port map(
+                i_CLK => i_CLK,
+                i_RST => i_RST,
+                i_WE => s_write_enable(i),
+                i_D => i_write_value,
+                o_Q => s_reg_outputs(i)
+            );
+        end generate regs;
     end generate G_N_REGS;
 
     --Both read muxes share the same inputs
-    read_mux1 : mux_32_32 
-        port map(
-            i_S => i_read_reg1,
-            i_D => s_reg_outputs,
-            o_Y => o_read_value1
-        );
+    read_mux1 : mux_32_32
+    port map(
+        i_S => i_read_reg1,
+        i_D => s_reg_outputs,
+        o_Y => o_read_value1
+    );
 
-    read_mux2 : mux_32_32 
-        port map(
-            i_S => i_read_reg2,
-            i_D => s_reg_outputs,
-            o_Y => o_read_value2
-        );
-
-
+    read_mux2 : mux_32_32
+    port map(
+        i_S => i_read_reg2,
+        i_D => s_reg_outputs,
+        o_Y => o_read_value2
+    );
 end mixed;

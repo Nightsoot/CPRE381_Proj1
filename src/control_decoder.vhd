@@ -76,8 +76,6 @@ begin
         "0001" when(
         --sub/slt/sltu is wierd case
         (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0100000") or
-        (s_opcode = "0010011" and s_funct3 = "010")or
-        (s_opcode = "1100011")
         )
         --AND
         else
@@ -116,7 +114,8 @@ begin
         )
         else
         "1000" when(
-        (s_opcode = "0110011" and s_funct3 = "010" and s_funct7 = "0000000")
+        (s_opcode = "0110011" and s_funct3 = "010" and s_funct7 = "0000000") or
+        (s_opcode = "0010011" and s_funct3 = "010")
         )
         else
         "1001" when(

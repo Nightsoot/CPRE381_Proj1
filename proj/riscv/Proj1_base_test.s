@@ -27,6 +27,9 @@ addi t4 t4 -556
 and t5 t3, t4
 li t0 0x543
 li t1 0xA18
+slti t6 t0 0x7FF
+slt t6 t0 t3
+sltu t6 t0 t4
 or t2, t0, t1
 xor t3, t5, t2
 li t0, 5
