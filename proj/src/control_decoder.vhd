@@ -75,7 +75,8 @@ begin
         --SUB
         "0001" when(
         --sub/slt/sltu is wierd case
-        (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0100000") 
+        (s_opcode = "0110011" and s_funct3 = "000" and s_funct7 = "0100000") or
+        (s_opcode = "1100011")
         )
         --AND
         else
