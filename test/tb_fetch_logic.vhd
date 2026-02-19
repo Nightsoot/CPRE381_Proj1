@@ -38,7 +38,8 @@ architecture behavior of tb_fetch_logic is
             i_carry : in std_logic;
             i_overflow : in std_logic;
             --new PC used by the program memory
-            o_new_PC : out std_logic_vector(31 downto 0)
+            o_new_PC : out std_logic_vector(31 downto 0);
+            o_PC_4 : out std_logic_vector(31 downto 0)
         );
         end component;
 

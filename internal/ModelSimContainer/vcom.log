@@ -1,6 +1,6 @@
 QuestaSim-64 vcom 2025.1_2 Compiler 2025.04 Apr  7 2025
-Start time: 14:43:36 on Feb 17,2026
-vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd internal/testpy/tb.vhd proj/src/RISCV_types.vhd proj/src/TopLevel/mem.vhd proj/src/TopLevel/RISCV_Processor.vhd 
+Start time: 18:47:55 on Feb 18,2026
+vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd internal/testpy/tb.vhd proj/src/barrel_shifter.vhd proj/src/control_decoder.vhd proj/src/fetch_logic.vhd proj/src/custom_types.vhd proj/src/mem_slice.vhd proj/src/dffg.vhd proj/src/imm_gen.vhd proj/src/RISCV_types.vhd proj/src/mux2t1.vhd proj/src/reg_n.vhd proj/src/reg_file/dffg.vhd proj/src/reg_file/reg_pc.vhd proj/src/reg_file/reg_file.vhd proj/src/reg_file/mux_32_32.vhd proj/src/reg_file/dffg_default_high.vhd proj/src/reg_file/decoder_5_32.vhd proj/src/reg_file/reg_n.vhd proj/src/alu/org2.vhd proj/src/alu/nor32t1.vhd proj/src/alu/andg2.vhd proj/src/alu/adder_S.vhd proj/src/alu/adder.vhd proj/src/alu/xor32.vhd proj/src/alu/alu.vhd proj/src/alu/barrel_shifter.vhd proj/src/alu/or32.vhd proj/src/alu/and32.vhd proj/src/alu/mux_8t1_32.vhd proj/src/alu/xorg2.vhd proj/src/alu/alu_decoder.vhd proj/src/TopLevel/RISCV_Processor.vhd proj/src/TopLevel/mem.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
@@ -11,16 +11,82 @@ vcom -2008 -work internal/ModelSimContainer/work proj/src/RISCV_types.vhd intern
 -- Loading package ENV
 -- Compiling entity tb
 -- Compiling architecture mixed of tb
+-- Compiling entity barrel_shifter
+-- Compiling architecture structural of barrel_shifter
+-- Loading package NUMERIC_STD
+-- Compiling entity control_decoder
+-- Compiling architecture dataflow of control_decoder
+-- Compiling entity fetch_logic
+-- Compiling architecture mixed of fetch_logic
+-- Compiling package custom_types
+-- Compiling entity mem_slice
+-- Compiling architecture dataflow of mem_slice
+** Warning: proj/src/dffg.vhd(23): (vcom-1615) Existing entity 'dffg' at /home/davidnr/CPRE_381/CPRE381_Proj1/proj/src/reg_file/dffg.vhd(23) will be overwritten.
+-- Compiling entity dffg
+** Warning: proj/src/dffg.vhd(33): (vcom-1615) Existing architecture 'dffg(mixed)' at /home/davidnr/CPRE_381/CPRE381_Proj1/proj/src/reg_file/dffg.vhd(33) will be overwritten.
+-- Compiling architecture mixed of dffg
+-- Compiling entity imm_gen
+-- Compiling architecture dataflow of imm_gen
 ** Warning: proj/src/RISCV_types.vhd(15): (vcom-1615) Existing package 'RISCV_types' at line 18 will be overwritten.
 -- Compiling package RISCV_types
 ** Warning: proj/src/RISCV_types.vhd(29): (vcom-1615) Existing package body 'RISCV_types(body)' at line 29 will be overwritten.
 -- Compiling package body RISCV_types
 -- Loading package RISCV_types
--- Loading package NUMERIC_STD
--- Compiling entity mem
--- Compiling architecture rtl of mem
+-- Compiling entity mux2t1
+-- Compiling architecture dataflow of mux2t1
+-- Compiling entity reg_n
+-- Compiling architecture structural of reg_n
+** Warning: proj/src/reg_file/dffg.vhd(23): (vcom-1615) Existing entity 'dffg' at proj/src/dffg.vhd(23) will be overwritten.
+-- Compiling entity dffg
+** Warning: proj/src/reg_file/dffg.vhd(33): (vcom-1615) Existing architecture 'dffg(mixed)' at proj/src/dffg.vhd(33) will be overwritten.
+-- Compiling architecture mixed of dffg
+-- Compiling entity reg_pc
+-- Compiling architecture structural of reg_pc
+-- Loading package custom_types
+-- Compiling entity reg_file
+-- Compiling architecture mixed of reg_file
+-- Compiling entity mux_32_32
+-- Compiling architecture dataflow of mux_32_32
+-- Compiling entity dffg_high
+-- Compiling architecture mixed of dffg_high
+-- Compiling entity decoder_5_32
+-- Compiling architecture dataflow of decoder_5_32
+** Warning: proj/src/reg_file/reg_n.vhd(17): (vcom-1615) Existing entity 'reg_n' at proj/src/reg_n.vhd(17) will be overwritten.
+-- Compiling entity reg_n
+** Warning: proj/src/reg_file/reg_n.vhd(29): (vcom-1615) Existing architecture 'reg_n(structural)' at proj/src/reg_n.vhd(29) will be overwritten.
+-- Compiling architecture structural of reg_n
+-- Compiling entity org2
+-- Compiling architecture dataflow of org2
+-- Compiling entity nor32t1
+-- Compiling architecture dataflow of nor32t1
+-- Compiling entity andg2
+-- Compiling architecture dataflow of andg2
+-- Compiling entity adder_S
+-- Compiling architecture structural of adder_S
+-- Compiling entity adder
+-- Compiling architecture structural of adder
+-- Compiling entity xor32
+-- Compiling architecture dataflow of xor32
+-- Compiling entity alu
+-- Compiling architecture structural of alu
+** Warning: proj/src/alu/barrel_shifter.vhd(16): (vcom-1615) Existing entity 'barrel_shifter' at proj/src/barrel_shifter.vhd(16) will be overwritten.
+-- Compiling entity barrel_shifter
+** Warning: proj/src/alu/barrel_shifter.vhd(28): (vcom-1615) Existing architecture 'barrel_shifter(structural)' at proj/src/barrel_shifter.vhd(28) will be overwritten.
+-- Compiling architecture structural of barrel_shifter
+-- Compiling entity or32
+-- Compiling architecture dataflow of or32
+-- Compiling entity and32
+-- Compiling architecture dataflow of and32
+-- Compiling entity mux8t1_32
+-- Compiling architecture dataflow of mux8t1_32
+-- Compiling entity xorg2
+-- Compiling architecture dataflow of xorg2
+-- Compiling entity alu_decoder
+-- Compiling architecture dataflow of alu_decoder
 -- Loading package RISCV_types
 -- Compiling entity RISCV_Processor
 -- Compiling architecture structure of RISCV_Processor
-End time: 14:43:36 on Feb 17,2026, Elapsed time: 0:00:00
-Errors: 0, Warnings: 2
+-- Compiling entity mem
+-- Compiling architecture rtl of mem
+End time: 18:47:55 on Feb 18,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 10

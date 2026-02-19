@@ -12,15 +12,6 @@ QuestaSim-64 vcom 2025.1_2 Compiler 2025.04 Apr  7 2025
 -- Loading package STANDARD
 ** Error (suppressible): /home/davidnr/CPRE_381/CPRE381_Proj1/test/tb_imm_gen.vhd(92): (vcom-1491) Empty source files.
 
-} {} {}} /home/davidnr/CPRE_381/CPRE381_Proj1/src/mem_slice.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/davidnr/CPRE_381/CPRE381_Proj1/src/mem_slice.vhd
-QuestaSim-64 vcom 2025.1_2 Compiler 2025.04 Apr  7 2025
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity mem_slice
--- Compiling architecture dataflow of mem_slice
-
 } {} {}} /home/davidnr/CPRE_381/CPRE381_Proj1/src/control_decoder.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none /home/davidnr/CPRE_381/CPRE381_Proj1/src/control_decoder.vhd
 QuestaSim-64 vcom 2025.1_2 Compiler 2025.04 Apr  7 2025
 -- Loading package STANDARD
