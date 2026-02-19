@@ -156,7 +156,6 @@ sw a4 4(sp)
 sw a5 8(sp)
 sw ra 12(sp)
 
-#LOOOK AT THE CALLING LATER
 mv a5 a4 #right = mid
 jal ra, merge_sort
 lw a3 4(sp) # left = mid
