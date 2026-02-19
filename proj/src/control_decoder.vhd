@@ -187,7 +187,7 @@ begin
         else
         --PC + imm
         "11" when(
-            s_opcode = "0010111"
+        s_opcode = "0010111"
         )
         --ALU
         else
@@ -200,8 +200,7 @@ begin
     --write to register file
     o_reg_write <= '0' when(
         (s_opcode = "0100011") or
-        (s_opcode = "1100011") or
-        (s_opcode = "0010111")
+        (s_opcode = "1100011")
         )
         else
         '1';

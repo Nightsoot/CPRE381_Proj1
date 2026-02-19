@@ -33,5 +33,7 @@ li t0, 5
 andi t1, t0, 1
 ori  t2, t1, 2
 xori t3, t2, 6
+auipc t5, 14
+
 
 wfi
